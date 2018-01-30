@@ -3,5 +3,10 @@
     "handlerName": "backtoryAPIs/shopAPIs/getGiftBox.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+  "registerPlayer": {
+    "handlerName": "backtoryAPIs/otherAPIs/registerPlayer.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "PUBLIC"
   }
 }
