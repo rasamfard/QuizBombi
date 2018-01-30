@@ -34,7 +34,7 @@ exports.handler = function(requestBody, context) {
 				getMission(context,1,function(mission){
 					player.set("currentMission",mission);
 					createExtraInfo(context,mission,function(extraInfo){
-						player.set("extra_info",extraInfo);
+						player.set("extraInfo",extraInfo);
 						player.save({
 							success: function(player) {
 								context.succeed({});
@@ -55,12 +55,10 @@ exports.handler = function(requestBody, context) {
 };
 function createExtraInfo(context,mission,callback)
 {
-	var TPlayers_info = Backtory.Object.extend("TPlayers_info");
-	var extra_info = new TPlayers_info();
-	extra_info.set("heartLastTime","0");
-	extra_info.set("currentMissionStep",0);
-	extra_info.set("currentMission",mission);
+	var TExtraInfo = Backtory.Object.extend("TExtraInfo");
+	var extra_info = new TExtraInfo();
 	extra_info.set("lastPackageId",0);
+        extra_info.set("lastPackageTime","0");
 	extra_info.save({
 		success: function(extra_info) {
 			callback(extra_info);
