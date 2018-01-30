@@ -1,3 +1,7 @@
 {
-   
+   "getGiftBox": {
+    "handlerName": "backtoryAPIs/shopAPIs/getGiftBox.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
+  }
 }
