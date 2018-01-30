@@ -24,4 +24,10 @@
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
   }
+  ,
+   "getMyProfile2": {
+    "handlerName": "backtoryAPIs/otherAPIs/getMyProfile2.handler",
+    "timeLimitInMilliSeconds": 6000,
+    "authenticationMode": "AUTHENTICATED"
+  }
 }
