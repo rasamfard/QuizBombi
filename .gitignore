@@ -1,0 +1,8 @@
+api/node_modules/
+
+*.log
+*.iml
+.idea/
+
+.DS_Store
+backtory_config.json
