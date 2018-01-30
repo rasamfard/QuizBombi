@@ -50,5 +50,10 @@
     "handlerName": "backtoryAPIs/matchAPIs/getPlayerRewards.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "buyOneItem": {
+    "handlerName": "backtoryAPIs/shopAPIs/buyOneItem.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   }
 }
