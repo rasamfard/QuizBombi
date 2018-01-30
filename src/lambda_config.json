@@ -8,5 +8,10 @@
     "handlerName": "backtoryAPIs/otherAPIs/registerPlayer.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "PUBLIC"
+  },
+   "getScreenItems": {
+    "handlerName": "backtoryAPIs/mainScreenAPIs/getScreenItems.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   }
 }
