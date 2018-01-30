@@ -13,5 +13,15 @@
     "handlerName": "backtoryAPIs/mainScreenAPIs/getScreenItems.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "addScreenItems": {
+    "handlerName": "backtoryAPIs/mainScreenAPIs/addScreenItems.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
+  },
+   "getAppInfo": {
+    "handlerName": "backtoryAPIs/appAPIs/getAppInfo.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   }
 }
