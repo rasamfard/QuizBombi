@@ -130,10 +130,5 @@
     "handlerName": "backtoryAPIs/rankAPIs/getTopRankings.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
-  },
-   "mytest": {
-    "handlerName": "backtoryAPIs/testAPIs/mytest.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "AUTHENTICATED"
   }
 }
