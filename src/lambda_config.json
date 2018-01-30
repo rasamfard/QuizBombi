@@ -40,5 +40,10 @@
     "handlerName": "backtoryAPIs/matchAPIs/getQuestions.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "gameEnded": {
+    "handlerName": "backtoryAPIs/matchAPIs/gameEnded.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   }
 }
