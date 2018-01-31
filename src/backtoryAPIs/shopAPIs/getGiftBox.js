@@ -16,12 +16,12 @@ exports.handler = function (requestBody, context) {
         if (packageExists)
         {
             var packageId = extraInfo.get("lastPackageId") + 1;
-            if (packageId > 3)
-                packageId = 1;
-            extraInfo.set("lastPackageId", packageId);
-            extraInfo.set("lastPackageTime", currDate);
-            extraInfo.save({
-                success: function (extraInfo) {
+//            if (packageId > 3)
+//                packageId = 1;
+//            extraInfo.set("lastPackageId", packageId);
+//            extraInfo.set("lastPackageTime", currDate);
+//            extraInfo.save({
+//                success: function (extraInfo) {
                     var TPackages = Backtory.Object.extend("TPackages");
                     var qQuery = new Backtory.Query(TPackages);
                     qQuery.equalTo("packageId", packageId);
@@ -35,14 +35,15 @@ exports.handler = function (requestBody, context) {
                             fail(context, error);
                         }
                     });
-                },
-                error: function (error) {
-                    fail(context, error);
-                }
-            });
+//                },
+//                error: function (error) {
+//                    fail(context, error);
+//                }
+//            });
 
         } else
-            fail(context, 'you should wait for one hour!');
+            succeed(context, {});
+//            fail(context, 'you should wait for one hour!');
     });
 
 };
