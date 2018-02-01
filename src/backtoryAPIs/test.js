@@ -12,6 +12,7 @@ exports.handler = function (requestBody, context) {
             var LoadTest = Backtory.Object.extend("LoadTest");
             var query = new Backtory.Query(LoadTest);
             context.log("player:"+player);
+            context.succeed({player:player});
             query.equalTo("player", player);
             query.find({
                 success: function (items) {
