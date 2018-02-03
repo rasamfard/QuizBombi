@@ -2,7 +2,7 @@ var Backtory = require('backtory-sdk');
 
 exports.handler = function(requestBody, context) {
 	var securityContext = context.getSecurityContext();
-	var userId="5a7450bde4b0fcc86fb339fc";//securityContext.userId;
+	var userId=securityContext.userId;
 	var heart=0;
 	var video_heart=0;
 	var ticket=0;
