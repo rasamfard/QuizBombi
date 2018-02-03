@@ -134,11 +134,6 @@ function addItemsToPlayer(context, player, items, ii, callback)
             context.fail(error);
         }
     });
-    var item = items[i];
-    if (item.name == "coin" || item.name == "heart" || item.name == "ticket")
-        player.set(item.name, item.count);
-    else
-
 }
 function clearRewards(context, rec)
 {
