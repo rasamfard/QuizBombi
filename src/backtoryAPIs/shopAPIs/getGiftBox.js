@@ -22,19 +22,42 @@ exports.handler = function (requestBody, context) {
 //            extraInfo.set("lastPackageTime", currDate);
 //            extraInfo.save({
 //                success: function (extraInfo) {
-                    var TPackages = Backtory.Object.extend("TPackages");
-                    var qQuery = new Backtory.Query(TPackages);
-                    qQuery.equalTo("packageId", packageId);
-                    qQuery.select("count", "item");
-                    qQuery.include("item");
-                    qQuery.find({
-                        success: function (items) {
-                            succeed(context, {packageId: packageId, items: items});
-                        },
-                        error: function (error) {
-                            fail(context, error);
+            var TPackages = Backtory.Object.extend("TPackages");
+            var qQuery = new Backtory.Query(TPackages);
+            qQuery.equalTo("packageId", packageId);
+            qQuery.select("count", "item");
+            qQuery.include("item");
+            qQuery.find({
+                success: function (items) {
+                    getRewardRecord(context, userId, function (rec) {
+                        var recItems = [];
+                        for (var i = 0; i < items.length; i++)
+                        {
+                            recItems[i] = items[i].get("item");
+                            recItems[i].set("count",items[i].get("count"));
                         }
+                        rec.set("items", recItems);
+                        rec.set("heart",0);
+                        rec.set("video_heart",0);
+                        rec.set("coin",0);
+                        rec.set("video_coin",0);
+                        rec.set("ticket",0);
+                        rec.set("video_ticket",0);
+                        rec.save({
+                            success: function (rec) {
+                                succeed(context, {packageId: packageId, items: items});
+                            },
+                            error: function (error) {
+                                fail(context, error);
+                            }
+                        });
                     });
+
+                },
+                error: function (error) {
+                    fail(context, error);
+                }
+            });
 //                },
 //                error: function (error) {
 //                    fail(context, error);
@@ -47,6 +70,25 @@ exports.handler = function (requestBody, context) {
     });
 
 };
+function getRewardRecord(context, userId, callback)
+{
+    var TPlayerRewards = Backtory.Object.extend("TPlayerRewards");
+    var qQuery = new Backtory.Query(TPlayerRewards);
+    qQuery.equalTo("userId", userId);
+    qQuery.find({
+        success: function (recs) {
+            var rec = new TPlayerRewards();
+            if (recs.length > 0)
+                callback(recs[0]);
+            else
+                callback(rec);
+
+        },
+        error: function (error) {
+            fail(context, error);
+        }
+    });
+}
 function findPlayer(context, userId, callback)
 {
     var TPlayers = Backtory.Object.extend("TPlayers");

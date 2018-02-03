@@ -19,7 +19,7 @@ exports.handler = function(requestBody, context) {
 				var type=types[number-1];
 				var count= counts[number-1];
 				findHeadItem(context,type,userId,function(ritems){
-					if(ritems.length>0)
+					if(ritems.length>0&&type==0)
 						items[0]=ritems[count];
 					if(type==0)
 					{
