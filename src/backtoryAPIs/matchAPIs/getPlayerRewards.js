@@ -116,6 +116,8 @@ function filterPurchasedItems(context, player, items, callback)
 }
 function addItemsToPlayer(context, player, items, ii, callback)
 {
+    if(items.length>0)
+    {
     var TPurchases = Backtory.Object.extend("TPurchases");
     var purchase = new TPurchases();
     purchase.set("userId", player.get("userId"));
@@ -131,6 +133,9 @@ function addItemsToPlayer(context, player, items, ii, callback)
             context.fail(error);
         }
     });
+    }
+    else
+        callback();
 }
 function clearRewards(context, rec)
 {
