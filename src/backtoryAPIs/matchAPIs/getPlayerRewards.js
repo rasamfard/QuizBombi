@@ -191,7 +191,7 @@ function findPlayer(context, userId, callback)
     var TPlayers = Backtory.Object.extend("TPlayers");
     var qQuery = new Backtory.Query(TPlayers);
     qQuery.equalTo("userId", userId);
-    mainQuery.include("extraInfo");
+    qQuery.include("extraInfo");
     qQuery.find({
         success: function (players) {
             if (players.length > 0)
