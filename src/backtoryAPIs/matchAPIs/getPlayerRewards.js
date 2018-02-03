@@ -1,5 +1,5 @@
 var Backtory = require('backtory-sdk');
-// types :    0.gameEnded  1.spinner 2.giftBox 3.TFQuestion
+// types :    0.gameEndedNormal 1.gameEndedVideo  2.spinnerNormal 3.spinnerVideo 4.giftBox 3.TFQuestion
 exports.handler = function(requestBody, context) {
 	var securityContext = context.getSecurityContext();
 	var userId=securityContext.userId;
