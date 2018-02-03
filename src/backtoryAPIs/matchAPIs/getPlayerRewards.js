@@ -47,7 +47,7 @@ exports.handler = function (requestBody, context) {
                     packageId = 1;
                 extraInfo.set("lastPackageId", packageId);
                 extraInfo.set("lastPackageTime", currDate);
-                addFreeItemsToPlayer(context, player, items);
+                items = addFreeItemsToPlayer(context, player, items);
             }
             clearRewards(context, rec);
             saveAll(context, player, extraInfo, rec, items, type);
@@ -55,6 +55,11 @@ exports.handler = function (requestBody, context) {
     });
 
 };
+//var x = ["a","b","c","t"];
+//var y = ["d","a","t","e","g"];
+//var myArray = y.filter( function( el ) {
+//  return x.indexOf( el ) < 0;
+//});
 function addFreeItemsToPlayer(context, player, items)
 {
     var filteredItems = [];
@@ -63,58 +68,50 @@ function addFreeItemsToPlayer(context, player, items)
     {
         var item = items[i];
         if (item.name == "coin" || item.name == "heart" || item.name == "ticket")
-            player.set(item.name, item.count+player.get(item.name));
+            player.set(item.name, item.count + player.get(item.name));
         else
         {
             filteredItems[k] = item;
             k++;
         }
     }
-    items = filteredItems;
+    return  filteredItems;
 }
-
-function filterPurchasedItems(context, player, items, callback)
+function createItemsObjects(items)
 {
-    var itemIds = [];
+    var newItems = [];
+    var TShopItems = Backtory.Object.extend("TShopItems");
     for (var i = 0; i < items.length; i++)
-        itemIds[i] = items[i]._id;
-    var fItems = [];
+    {
+        newItems[i] = new TShopItems();
+        newItems[i].set("_id", items[i]._id);
+    }
+    return newItems;
+}
+function getPurchasedItems(context, player, callback)
+{
     var TPurchases = Backtory.Object.extend("TPurchases");
     var query = new Backtory.Query(TPurchases);
     query.equalTo("userId", player.get("userId"));
-    query.containedIn("_id", itemIds);
     query.find({
         success: function (purchase_list) {
-            var k = 0;
-            for (var i = 0; i < items.length; i++)
-            {
-                function find_Item(item) {
-                    return item.get("_id") == items[i]._id;
-                }
-                var nitems = purchase_list.filter(find_Item);
-                if (nitems.length == 0)
-                {
-                    fItems[k] = itemIds[i];
-                    k++;
-                }
-            }
-            var TShopItems = Backtory.Object.extend("TShopItems");
-            var squery = new Backtory.Query(TShopItems);
-            squery.containedIn("_id", fItems);
-            squery.find({
-                success: function (list) {
-                    callback(list);
-                },
-                error: function (error) {
-                    fail(context, error);
-                }
-            });
-
-
+            callback(purchase_list);
         },
         error: function (error) {
-            fail(context, error);
+            context.fail(error);
         }
+    });
+}
+function filterPurchasedItems(context, player, items, callback)
+{
+    getPurchasedItems(context, player, function (plist) {
+        var flist = items.filter(function (el) {
+            return plist.findIndex(function (pl){
+                return pl.get("item").get("_id")==el._id;
+            }) < 0;
+        });
+        var newItems = createItemsObjects(flist);
+        callback(newItems);
     });
 }
 function addItemsToPlayer(context, player, items, ii, callback)
