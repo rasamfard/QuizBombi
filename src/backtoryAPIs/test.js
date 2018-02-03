@@ -2,7 +2,7 @@ var Backtory = require('backtory-sdk');
 
 exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
-    var userId = "5a5b4e873d60fd0001a1bed4";
+    var userId = "5a5b4e873d60fd0001a1bed3";
     var TPlayersTest = Backtory.Object.extend("TPlayersTest");
     var qquery = new Backtory.Query(TPlayersTest);
     qquery.equalTo("_id", userId);
