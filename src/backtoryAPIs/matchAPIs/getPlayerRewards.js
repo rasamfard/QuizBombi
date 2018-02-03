@@ -63,7 +63,7 @@ function addFreeItemsToPlayer(context, player, items)
     {
         var item = items[i];
         if (item.name == "coin" || item.name == "heart" || item.name == "ticket")
-            player.set(item.name, item.count);
+            player.set(item.name, item.count+player.get(item.name));
         else
         {
             filteredItems[k] = item;
@@ -223,7 +223,7 @@ function findRewardsRec(context, userId, callback)
         }
     });
 }
-function fail(context, errors)
+function fail(context, error)
 {
     context.log("error:" + JSON.stringify(error));
     context.fail(error);
