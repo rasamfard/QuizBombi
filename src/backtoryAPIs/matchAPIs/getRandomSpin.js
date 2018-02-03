@@ -36,6 +36,7 @@ exports.handler = function(requestBody, context) {
 						coin=count;
 						video_coin=count*2;
 					}
+                                        rec.set("userId",userId);
 					rec.set("heart",heart);
 					rec.set("video_heart",video_heart);
 					rec.set("coin",coin);

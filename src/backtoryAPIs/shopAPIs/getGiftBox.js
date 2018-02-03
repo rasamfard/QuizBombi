@@ -36,6 +36,7 @@ exports.handler = function (requestBody, context) {
                             recItems[i] = items[i].get("item");
                             recItems[i].set("count",items[i].get("count"));
                         }
+                        rec.set("userId", userId);
                         rec.set("items", recItems);
                         rec.set("heart",0);
                         rec.set("video_heart",0);
