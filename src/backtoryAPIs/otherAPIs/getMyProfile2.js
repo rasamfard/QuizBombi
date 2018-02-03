@@ -118,7 +118,7 @@ function checkInfinitEnergy(context, pp, callback)
         var TPurchases = Backtory.Object.extend("TPurchases");
         var query = new Backtory.Query(TPurchases);
         query.equalTo("userId", pp.get("userId"));
-        query.equalTo("itemId", item);
+        query.equalTo("item", item);
         query.find({
             success: function (list) {
                 if (list.length > 0)
