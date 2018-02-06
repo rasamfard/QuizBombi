@@ -9,8 +9,6 @@ exports.handler = function (requestBody, context) {
         getScreen(context, player, function (screen) {
             var homeItemId = count == 2 ? "5a5b5d97e7e9dc0001a27184" : "5a5b5d98e7e9dc0001a27186";
             var items = screen.get("items");
-            context.log("items:");
-context.log(JSON.stringify(items));
             var homeIndex = items.findIndex(function (item) {
                 return item.itemId == homeItemId;
             });
@@ -21,8 +19,6 @@ context.log(JSON.stringify(items));
             }
             
             var homeItem = items[homeIndex];
-            context.log("homeItem:");
-            context.log(JSON.stringify(homeItem));
             getShopItem(context, homeItemId, function (item) {
                 var lifeTime = item.get("lifeTime");
                 var extraInfo = player.get("extraInfo");
@@ -43,14 +39,10 @@ context.log(JSON.stringify(items));
                     usedHomesTF = 2;
                 else if (count == 4 && usedHomesTF == 1)
                     usedHomesTF = 3;
-                context.log("item:");
-                context.log(JSON.stringify(item));
 //                item.set("lifeTime", lifeTime);
 
                 var lastHomeTime = new Date(homeItem.addTime);
                 var diffMins = Math.floor(Math.abs(currDate - lastHomeTime) / 60000);
-                context.log("diffMins:"+diffMins);
-                context.log("lifeTime:"+lifeTime);
                 var timeOk = diffMins > lifeTime ? true : false;
                 if (timeOk)
                 {
