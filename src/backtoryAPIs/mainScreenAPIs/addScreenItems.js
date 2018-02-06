@@ -56,9 +56,9 @@ function correctLifeTime(itemm, usedHomesTF)
 {
     var lifeTime = itemm.get("lifeTime");
     var count = 0;
-    if (itemm == "5a5b5d97e7e9dc0001a27184")
+    if (itemm.get("_id") == "5a5b5d97e7e9dc0001a27184")
         count = 2;
-    if (itemm == "5a5b5d98e7e9dc0001a27186")
+    if (itemm.get("_id") == "5a5b5d98e7e9dc0001a27186")
         count = 4;
     if (count > 0)
     {
