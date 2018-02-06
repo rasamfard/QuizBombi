@@ -20,29 +20,32 @@ exports.handler = function (requestBody, context) {
                     }
                     var nitems = allItems.filter(find_Item);
                     items[i].item = nitems[0];
-                    var count = 0;
-                    if (items[i].itemId == "5a5b5d97e7e9dc0001a27184")
-                        count = 2;
-                    if (items[i].itemId == "5a5b5d98e7e9dc0001a27186")
-                        count == 4;
-                    if (count > 0)
-                    {
-                        var lifeTime = items[i].item.get("lifeTime");
-                        if (usedHomesTF == 0)
-                            lifeTime = 1;
-                        if (count == 2 && usedHomesTF == 2)
-                            lifeTime = 1;
-                        if (count == 4 && usedHomesTF == 1)
-                            lifeTime = 1;
-                        items[i].item.set("lifeTime", lifeTime);
-
-                    }
+                    items[i].item.set("lifeTime", correctLifeTime(items[i].item, usedHomesTF));
                 }
                 context.succeed({items: items});
             });
         });
     });
 };
+function correctLifeTime(itemm, usedHomesTF)
+{
+    var count = 0;
+    if (itemm == "5a5b5d97e7e9dc0001a27184")
+        count = 2;
+    if (itemm == "5a5b5d98e7e9dc0001a27186")
+        count == 4;
+    if (count > 0)
+    {
+        var lifeTime = itemm.get("lifeTime");
+        if (usedHomesTF == 0)
+            lifeTime = 1;
+        if (count == 2 && usedHomesTF == 2)
+            lifeTime = 1;
+        if (count == 4 && usedHomesTF == 1)
+            lifeTime = 1;
+    }
+    return lifeTime;
+}
 function getShopItems(context, itemIds, callback)
 {
     var TShopItems = Backtory.Object.extend("TShopItems");
