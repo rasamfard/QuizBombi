@@ -74,7 +74,7 @@ function getRank(leaderId,type,player,callBack,context)
 		leaderBoard.getUserRank(player.get("userId"), {
 			success: function(rank, scores) {
 				player.set("rank",rank);
-				player.set("score",scores[1]);
+				player.set("score",scores[0]);
 				if(type==2||type==3)
 					player.set("matchCount",scores[0])
 				callBack();
