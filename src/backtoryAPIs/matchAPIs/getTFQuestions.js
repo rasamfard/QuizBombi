@@ -47,7 +47,7 @@ context.log(JSON.stringify(items));
                 context.log(JSON.stringify(item));
 //                item.set("lifeTime", lifeTime);
 
-                var lastHomeTime = new Date(homeItem.addTime.split("UTC")[0] + "Z");
+                var lastHomeTime = new Date(homeItem.addTime);
                 var diffMins = Math.floor(Math.abs(currDate - lastHomeTime) / 60000);
                 context.log("diffMins:"+diffMins);
                 context.log("lifeTime:"+lifeTime);
