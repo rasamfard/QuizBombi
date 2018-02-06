@@ -59,6 +59,7 @@ function createExtraInfo(context,mission,callback)
 	var extra_info = new TExtraInfo();
 	extra_info.set("lastPackageId",0);
         extra_info.set("lastPackageTime","0");
+        extra_info.set("usedHomesTF",0);
 	extra_info.save({
 		success: function(extra_info) {
 			callback(extra_info);
