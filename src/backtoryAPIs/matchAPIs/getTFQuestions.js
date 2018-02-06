@@ -15,7 +15,7 @@ exports.handler = function (requestBody, context) {
             });
             if (homeIndex < 0)
             {
-                context.fail('item not purchased');
+                fail(context,'item not purchased');
                 return;
             }
             var homeItem = items[homeIndex];
@@ -60,21 +60,21 @@ exports.handler = function (requestBody, context) {
                                             succeed(context, {questions: questions, item: item});
                                         },
                                         error: function (error) {
-                                            context.fail(error);
+                                            fail(context,error);
                                         }
                                     });
                                 } else
                                     succeed(context, {questions: questions, item: item});
                             },
                             error: function (error) {
-                                context.fail(error);
+                                fail(context,error);
                             }
                         });
 
                     });
                 } else
                 {
-                    context.fail('time not reached');
+                    fail(context,'time not reached');
                 }
             });
         });
@@ -92,10 +92,10 @@ function getShopItem(context, itemId, callback)
             if (list.length > 0)
                 callback(list[0]);
             else
-                context.fail('item not found');
+                fail(context,'item not found');
         },
         error: function (error) {
-            context.fail(error);
+            fail(context,error);
 
         }
     });
@@ -112,10 +112,10 @@ function getPlayer(context, pId, callback)
             if (list.length > 0)
                 callback(list[0]);
             else
-                context.fail('player not found');
+                fail(context,'player not found');
         },
         error: function (error) {
-            context.fail(error);
+            fail(context,error);
         }
     });
 }
@@ -131,10 +131,10 @@ function getScreen(context, player, callback)
             if (list.length > 0)
                 callback(list[0]);
             else
-                context.fail('screen not found');
+                fail(context,'screen not found');
         },
         error: function (error) {
-            context.fail(error);
+            fail(context,error);
         }
     });
 }
