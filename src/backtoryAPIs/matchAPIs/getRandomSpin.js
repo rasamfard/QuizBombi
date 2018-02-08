@@ -1,6 +1,7 @@
 var Backtory = require('backtory-sdk');
-
+var requestBodyStr="";
 exports.handler = function(requestBody, context) {
+        requestBodyStr=JSON.stringify(requestBody);
 	var securityContext = context.getSecurityContext();
 	var userId=securityContext.userId;
 	var heart=0;
@@ -165,6 +166,7 @@ function getWinnerNumber(types,callback)
 }
 function fail(context,error)
 {
+        context.log("request:"+requestBodyStr);
 	context.log("error:"+JSON.stringify(error));
 	context.fail(error);
 }
