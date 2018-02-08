@@ -59,6 +59,7 @@ exports.handler = function (requestBody, context) {
 };
 function createScreenItems(context, player, callback)
 {
+    var TScreenItems = Backtory.Object.extend("TScreenItems");
     var screen = new TScreenItems();
     screen.set("player", player);
     var items = [];
