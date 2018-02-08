@@ -17,7 +17,7 @@ exports.handler = function (requestBody, context) {
                             fail(context, "not enough money");
                         else
                             player.set("coin", (coins - price));
-                        buyItem(context, player, item, function () {
+                        buyItem(context, player, item,1, function () {
                             player.save({
                                 success: function (player) {
                                     context.succeed({message: "successful"});
@@ -41,8 +41,8 @@ exports.handler = function (requestBody, context) {
                 } else
                     player.set("coin", (coins - price));
 
-                getSpecialPackageItems(context, item.get("specialPackageId"), function (items) {
-                    buyItems(context, player, items, 0, function () {
+                getSpecialPackageItems(context, item.get("specialPackageId"), function (pitems) {
+                    buyItems(context, player, pitems, 0, function () {
                         player.save({
                             success: function (player) {
                                 context.succeed({message: "successful"});
@@ -59,21 +59,21 @@ exports.handler = function (requestBody, context) {
     });
 
 };
-function buyItems(context, player, items, i, callback)
+function buyItems(context, player, pitems, i, callback)
 {
-    checkIfNotPurchased(context, player.get("userId"), items[i], function (notPurchased) {
+    checkIfNotPurchased(context, player.get("userId"), pitems[i].get("item"), function (notPurchased) {
         if (notPurchased)
         {
-            buyItem(context, player, items[i], function () {
-                if (i < items.length - 1)
-                    buyItems(context, player, items, i + 1, callback);
+            buyItem(context, player, pitems[i].get("item"),pitems[i].get("count"), function () {
+                if (i < pitems.length - 1)
+                    buyItems(context, player, pitems, i + 1, callback);
                 else
                     callback();
             });
         } else
         {
-            if (i < items.length - 1)
-                buyItems(context, player, items, i + 1, callback);
+            if (i < pitems.length - 1)
+                buyItems(context, player, pitems, i + 1, callback);
             else
                 callback();
         }
@@ -131,24 +131,24 @@ function getPlayer(context, pId, callback)
         }
     });
 }
-function buyItem(context, player, item, callback)
+function buyItem(context, player, item,count, callback)
 {
     if (item.get("sectionCode") == 2)//heart
-        player.set("heart", player.get("heart") + item.get("amount"));
+        player.set("heart", player.get("heart") + item.get("amount")*count);
     else
     if (item.get("sectionCode") == 13 && item.get("name") == "heart")//heart
-        player.set("heart", player.get("heart") + item.get("amount"));
+        player.set("heart", player.get("heart") + item.get("amount")*count);
     else
     if (item.get("sectionCode") == 8)//hearttick
     {
-        player.set("heart", player.get("heart") + (item.get("amount") / 2));
-        player.set("ticket", player.get("ticket") + (item.get("amount") / 2));
+        player.set("heart", player.get("heart") + (item.get("amount")*count / 2));
+        player.set("ticket", player.get("ticket") + (item.get("amount")*count / 2));
     } else
     if (item.get("sectionCode") == 13 && item.get("name") == "ticket")//ticket
-        player.set("ticket", player.get("ticket") + item.get("amount"));
+        player.set("ticket", player.get("ticket") + item.get("amount")*count);
     else
     if (item.get("sectionCode") == 7)//ticket
-        player.set("ticket", player.get("ticket") + item.get("amount"));
+        player.set("ticket", player.get("ticket") + item.get("amount")*count);
 
     if (item.get("maxPurchases") > 0)
     {
