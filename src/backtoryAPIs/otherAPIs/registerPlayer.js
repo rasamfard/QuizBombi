@@ -20,9 +20,10 @@ exports.handler = function(requestBody, context) {
 			player.set("name","user_"+userInfo.userId.slice(21, 24));
 			player.set("userId",userInfo.userId);
 			player.set("avatar",["1","1","1"]);
-			player.set("coin",2500);
+			player.set("coin",20000);
 			player.set("level",1);
 			player.set("heart",3);
+                        player.set("ticket",5);
 			player.set("qCount",5);
 			player.set("matchCount",0);
 			player.set("xp",0);
