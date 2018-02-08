@@ -100,7 +100,7 @@ exports.handler = function (requestBody, context) {
                             trees: trees,
                             flowers: flowers,
                             coinPacks: coinPacks,
-                            specialPackages: {specialPackages
+                            specialPackages: specialPackages
                         });
                     });
                 },
