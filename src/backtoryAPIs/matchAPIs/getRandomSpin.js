@@ -1,8 +1,10 @@
 var Backtory = require('backtory-sdk');
 var requestBodyStr = "";
+var requestPlayer="";
 exports.handler = function (requestBody, context) {
     requestBodyStr = JSON.stringify(requestBody);
     var securityContext = context.getSecurityContext();
+    requestPlayer=securityContext.userId;
     var userId = securityContext.userId;
     var heart = 0;
     var video_heart = 0;
@@ -166,6 +168,7 @@ function getWinnerNumber(types, callback)
 }
 function fail(context, error)
 {
+    context.log("userId:"+requestPlayer);
     context.log("request:" + requestBodyStr);
     context.log("error:" + JSON.stringify(error));
 
@@ -173,6 +176,7 @@ function fail(context, error)
     var rec = new TErrorReports();
     rec.set("error", JSON.stringify(error));
     rec.set("requestBody", requestBodyStr);
+    rec.set("userId",requestPlayer);
     rec.save({
         success: function (rec) {
             context.fail(error);
