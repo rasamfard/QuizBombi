@@ -22,7 +22,7 @@ exports.handler = function (requestBody, context) {
             player.set("avatar", ["1", "1", "1"]);
             player.set("coin", 20000);
             player.set("level", 1);
-            player.set("heart", 3);
+            player.set("heart", 5);
             player.set("ticket", 5);
             player.set("qCount", 5);
             player.set("matchCount", 0);
