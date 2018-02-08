@@ -100,7 +100,7 @@ exports.handler = function (requestBody, context) {
                             trees: trees,
                             flowers: flowers,
                             coinPacks: coinPacks,
-                            specialPackages: specialPackages
+                            specialPackages: {specialPackages
                         });
                     });
                 },
@@ -123,12 +123,10 @@ function getSpecialPackagesDetail(context, SPackages, i, callback)
     mquery.equalTo("packageId", SPackages[i].get("specialPackageId"));
     mquery.find({
         success: function (list) {
-            context.log("list"+JSON.stringify(list));
-            
-            var items = list.length > 0 ? list : [];
-            context.log("items"+JSON.stringify(list));
+            var items=[];
+            for(var j=0;j<list.length;j++)
+              items[j] = list[j].get("item");
             SPackages[i].set("items", items);
-            context.log("packages"+JSON.stringify(SPackages));
             if (i < SPackages.length - 1)
                 getSpecialPackagesDetail(context, SPackages, i + 1,callback);
             else
