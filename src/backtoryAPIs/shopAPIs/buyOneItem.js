@@ -149,6 +149,12 @@ function buyItem(context, player, item,count, callback)
     else
     if (item.get("sectionCode") == 7)//ticket
         player.set("ticket", player.get("ticket") + item.get("amount")*count);
+    else
+    if (item.get("sectionCode") == 13 && item.get("name") == "coin")//coin
+        player.set("coin", player.get("coin") + item.get("amount")*count);
+    else
+    if (item.get("sectionCode") == 1)//coinpack
+        player.set("coin", player.get("coin") + item.get("amount")*count);
 
     if (item.get("maxPurchases") > 0)
     {
