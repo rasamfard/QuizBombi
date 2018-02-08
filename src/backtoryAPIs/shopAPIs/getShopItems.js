@@ -82,23 +82,26 @@ exports.handler = function (requestBody, context) {
                         return item.get("sectionCode") == 14;
                     }
                     var specialPackages = list.filter(find_SpecialPackages);
-                    if(specialPackages.length>0)
-                        getSpecialPackagesDetail(context,specialPackages,0);
-                    context.succeed({
-                        infiniteEnergy: infiniteEnergy,
-                        hearts: hearts,
-                        purchases: purchase_list,
-                        bodies: bodies,
-                        heads: heads,
-                        headBs: headBs,
-                        tickets: tickets,
-                        hearticks: hearticks,
-                        giftboxes: giftboxes,
-                        decorates: decorates,
-                        trees: trees,
-                        flowers: flowers,
-                        coinPacks: coinPacks,
-                        specialPackages:specialPackages
+
+                    getSpecialPackagesDetail(context, specialPackages, 0, function (specialPackages) {
+
+
+                        context.succeed({
+                            infiniteEnergy: infiniteEnergy,
+                            hearts: hearts,
+                            purchases: purchase_list,
+                            bodies: bodies,
+                            heads: heads,
+                            headBs: headBs,
+                            tickets: tickets,
+                            hearticks: hearticks,
+                            giftboxes: giftboxes,
+                            decorates: decorates,
+                            trees: trees,
+                            flowers: flowers,
+                            coinPacks: coinPacks,
+                            specialPackages: specialPackages
+                        });
                     });
                 },
                 error: function (error) {
@@ -112,7 +115,7 @@ exports.handler = function (requestBody, context) {
     });
 
 };
-function getSpecialPackagesDetail(context,SPackages,i)
+function getSpecialPackagesDetail(context, SPackages, i, callback)
 {
     var TSpecialPackages = Backtory.Object.extend("TSpecialPackages");
     var mquery = new Backtory.Query(TSpecialPackages);
@@ -120,10 +123,10 @@ function getSpecialPackagesDetail(context,SPackages,i)
     mquery.equalTo("packageId", SPackages[i].get("specialPackageId"));
     mquery.find({
         success: function (list) {
-            var items=list.length>0?list:[];
-            SPackages[i].set("items",items);
-            if(i<SPackages.length-1)
-                getSpecialPackagesDetail(context,SPackages,i+1);
+            var items = list.length > 0 ? list : [];
+            SPackages[i].set("items", items);
+            if (i < SPackages.length - 1)
+                getSpecialPackagesDetail(context, SPackages, i + 1);
             else
                 callback(SPackages)
         },
