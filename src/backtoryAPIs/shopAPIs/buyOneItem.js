@@ -17,7 +17,7 @@ exports.handler = function (requestBody, context) {
                             fail(context, "not enough money");
                         else
                             player.set("coin", (coins - price));
-                        buyItem(context, player_id, item, function () {
+                        buyItem(context, player, item, function () {
                             player.save({
                                 success: function (player) {
                                     context.succeed({message: "successful"});
