@@ -69,7 +69,7 @@ function findHeadItem(context, type, userId, callback)
     getPurchasedItems(context, userId, function (purchase_list) {
         var blackList = [];
         for (var i = 0; i < purchase_list.length; i++)
-            blackList[i] = purchase_list.get("item").get("_id");
+            blackList[i] = purchase_list[i].get("item").get("_id");
         getNotPurchasedItems(context, blackList, function (items) {
             items = items.sort(function (a, b) {
                 if (a < a) {
