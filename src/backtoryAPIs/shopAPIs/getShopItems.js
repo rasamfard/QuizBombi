@@ -82,7 +82,8 @@ exports.handler = function (requestBody, context) {
                         return item.get("sectionCode") == 14;
                     }
                     var specialPackages = list.filter(find_SpecialPackages);
-                    getSpecialPackagesDetail(context,specialPackages,0);
+                    if(specialPackages.length>0)
+                        getSpecialPackagesDetail(context,specialPackages,0);
                     context.succeed({
                         infiniteEnergy: infiniteEnergy,
                         hearts: hearts,
