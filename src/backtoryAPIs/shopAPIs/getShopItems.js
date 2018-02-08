@@ -126,7 +126,7 @@ function getSpecialPackagesDetail(context, SPackages, i, callback)
             var items = list.length > 0 ? list : [];
             SPackages[i].set("items", items);
             if (i < SPackages.length - 1)
-                getSpecialPackagesDetail(context, SPackages, i + 1);
+                getSpecialPackagesDetail(context, SPackages, i + 1,callback);
             else
                 callback(SPackages)
         },
