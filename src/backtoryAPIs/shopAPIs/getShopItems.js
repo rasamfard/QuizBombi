@@ -125,7 +125,10 @@ function getSpecialPackagesDetail(context, SPackages, i, callback)
         success: function (list) {
             var items=[];
             for(var j=0;j<list.length;j++)
+            {
               items[j] = list[j].get("item");
+              items[j].set("amount",list[j].get("count"));
+          }
             SPackages[i].set("items", items);
             if (i < SPackages.length - 1)
                 getSpecialPackagesDetail(context, SPackages, i + 1,callback);
