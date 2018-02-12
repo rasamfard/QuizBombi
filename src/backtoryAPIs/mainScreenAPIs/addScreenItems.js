@@ -15,7 +15,15 @@ exports.handler = function (requestBody, context) {
             var items = screen.get("items");
             for (var i = 0; i < itemIds.length; i++)
                 if (items.length < 15)
-                    items[items.length] = {itemId: itemIds[i], pose: positions[i], addTime: date};
+                {
+                    var itemIndex = items.findIndex(function (pl) {
+                        return pl.get("pose") == positions[i];
+                    });
+                    if (itemIndex < 0)
+                        items[items.length] = {itemId: itemIds[i], pose: positions[i], addTime: date};
+                    else
+                        items[itemIndex] = {itemId: itemIds[i], pose: positions[i], addTime: date};
+                }
             screen.set("items", items);
             screen.save({
                 success: function (screen) {
@@ -52,6 +60,23 @@ exports.handler = function (requestBody, context) {
 
 
 };
+function getShopItems(context, itemIds, callback)
+{
+    var TShopItems = Backtory.Object.extend("TShopItems");
+    var mainQuery = new Backtory.Query(TShopItems);
+    mainQuery.containedIn("_id", itemIds);
+    mainQuery.limit(1000);
+    mainQuery.find({
+        success: function (list) {
+            callback(list);
+        },
+        error: function (error) {
+            context.log('111111111111111111');
+            context.fail(error);
+
+        }
+    });
+}
 function correctLifeTime(itemm, usedHomesTF)
 {
     var lifeTime = itemm.get("lifeTime");
@@ -62,7 +87,7 @@ function correctLifeTime(itemm, usedHomesTF)
         count = 4;
     if (count > 0)
     {
-        
+
         if (usedHomesTF == 0)
             lifeTime = 1;
         if (count == 2 && usedHomesTF == 2)
