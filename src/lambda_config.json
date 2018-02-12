@@ -150,5 +150,20 @@
     "handlerName": "backtoryAPIs/qbhost/deleteQuestion.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "PUBLIC"
+  }, 
+  "storeTFQuestion": {
+    "handlerName": "backtoryAPIs/qbhost/storeTFQuestion.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "PUBLIC"
+  }, 
+  "updateTFQuestion": {
+    "handlerName": "backtoryAPIs/qbhost/updateTFQuestion.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "PUBLIC"
+  }, 
+  "deleteTFQuestion": {
+    "handlerName": "backtoryAPIs/qbhost/deleteTFQuestion.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "PUBLIC"
   }
 }
