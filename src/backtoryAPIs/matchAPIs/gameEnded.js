@@ -35,8 +35,9 @@ exports.handler = function(requestBody, context) {
 				if(xp<0)
 					xp=0;
 				player.set("level",player.get("level")+1);
-				player.set("xp",xp);
+				
 			}
+                        player.set("xp",xp);
 			missions(context,player,type,rank,gameScore,answers);
 			player.save({
 				success: function(p2) {
