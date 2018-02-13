@@ -28,6 +28,7 @@ exports.handler = function (requestBody, context) {
             player.set("matchCount", 0);
             player.set("xp", 0);
             player.set("heartLastTime", "0");
+            player.set("endlessMaxQCount", 0);
             player.set("currentMissionStep", 0);
 
             generateUID(context, function (puid) {

@@ -56,7 +56,6 @@ exports.handler = function (requestBody, context) {
         }
     });
 };
-
 function updateEnergy(context, pp, callback)
 {
     if (pp.get("heartLastTime") == null)

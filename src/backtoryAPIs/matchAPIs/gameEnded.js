@@ -38,6 +38,8 @@ exports.handler = function(requestBody, context) {
 				
 			}
                         player.set("xp",xp);
+                        if(type==6)
+                            player.set("endlessMaxQCount",Math.max(qCount,player.get("endlessMaxQCount")));
 			missions(context,player,type,rank,gameScore,answers);
 			player.save({
 				success: function(p2) {
