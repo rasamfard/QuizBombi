@@ -25,6 +25,8 @@ exports.handler = function(requestBody, context) {
 	
 	findPlayer(context,securityContext.userId,function(player){
 	//	player.set("coin",player.get("coin")+coin);
+            if(player.get("heart")>3)
+                video_heart=0;
 		savePlayerRewards(context,player,function(){
 			xp=xp+player.get("xp");
 			if(xp>=player.get("level")*3+3)

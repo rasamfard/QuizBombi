@@ -14,6 +14,15 @@ exports.handler = function (requestBody, context) {
     var video_coin = 0;
     var items = [];
     var type_names = ['heart', 'ticket', '', 'coin', 'head'];
+    
+    
+  //  var coins_count=Math.floor(Math.random() * 8) + 1;
+    //50 150 250 coins 3 ya 2    1
+    //1 2 heart 1 ya 2     3
+    //1 ticket 1 ya 2     4
+    //1 head    5
+    //puch 2 ya 3     2
+    
     var types = [0, 1, 2, 3, 4, 0, 3, 3];
     var counts = [1, 1, 0, 1, 1, 1, 1, 1];
     findPlayer(context, userId, function (player) {
