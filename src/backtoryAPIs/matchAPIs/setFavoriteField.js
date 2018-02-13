@@ -71,22 +71,46 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
 }
 function findbots(context, qCount, playerId, callback)
 {
+
     var TPlayers = Backtory.Object.extend("TPlayers");
-    var qQuery = new Backtory.Query(TPlayers);
-    qQuery.notEqualTo("userId", playerId);
-    var count = Math.ceil((Math.random() + 0.01) * (1.9));
-    if (qCount == 505)
-        count = 2;
-    qQuery.limit(count);
-    qQuery.find({
-        success: function (bots) {
-            callback(bots);
+    var countQuery = new Backtory.Query(TPlayers);
+    countQuery.notEqualTo("userId", playerId);
+    countQuery.count({
+        success: function (max) {
+            var qQuery = new Backtory.Query(TPlayers);
+            qQuery.notEqualTo("userId", playerId);
+            var skipIndex = Math.floor(Math.random() * max);
+            var count = Math.ceil((Math.random() + 0.01) * (1.9));
+            if (qCount == 505)
+                count = 2;
+            qQuery.skip(skipIndex);
+            qQuery.limit(count);
+            qQuery.find({
+                success: function (bots) {
+                    if(bots.length>0)
+                        bots=shuffleArray(bots);
+                    callback(bots);
+                },
+                error: function (error) {
+                    callback([]);
+                }
+            });
+
         },
         error: function (error) {
             callback([]);
         }
     });
 
+
+
+
+}
+function shuffleArray(a) { 
+	var i = a.length, t, j;
+    a = a.slice();
+    while (--i) t = a[i], a[i] = a[j = ~~(Math.random() * (i+1))], a[j] = t;
+    return a;
 }
 function findPlayer(context, playerId, callback)
 {
