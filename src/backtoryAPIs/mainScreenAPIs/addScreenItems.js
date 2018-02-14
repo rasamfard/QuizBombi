@@ -17,7 +17,7 @@ exports.handler = function (requestBody, context) {
                 if (items.length < 15)
                 {
                     var itemIndex = items.findIndex(function (pl) {
-                        return pl.get("pose") == positions[i];
+                        return pl.pose == positions[i];
                     });
                     if (itemIndex < 0)
                         items[items.length] = {itemId: itemIds[i], pose: positions[i], addTime: date};
