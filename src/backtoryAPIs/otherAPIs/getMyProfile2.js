@@ -127,7 +127,8 @@ function checkInfinitEnergy(context, pp, callback)
                 callback();
             },
             error: function (error) {
-                fail(context, error);
+                callback();
+              //  fail(context, error);
             }
         });
     });
