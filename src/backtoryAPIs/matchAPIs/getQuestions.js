@@ -2,29 +2,31 @@ var Backtory = require('backtory-sdk');
 var imagesURL='http://quizbombi.ir/public/images/';
 exports.handler = function(requestBody, context) {
  	//context.log(JSON.stringify(requestBody));
-	getPlayersFields(context,requestBody.participants,function(fields,ttype){
+	getPlayersFields(context,requestBody.participants,function(fields,ttype,level){
 		context.log("ttype:"+ttype);
 		if(ttype==5)
 		{
 			context.log("fields:"+fields);
 			getQuestionsIds(context,fields,0,6,function(questions,Ids){
 				succeed(context,{questions:questions,Ids:Ids});
-			});		
+			},level);		
 		}
 		else
 		{
 			getQuestionsPack(fields,0,[],function(questions){
 				succeed(context,{questions:questions});
-			},context,ttype);
+			},context,ttype,level);
 		}
 	});
 };
-function getQuestion_allFields(ids,callback,questions,i,context,count,ttype)
+function getQuestion_allFields(ids,callback,questions,i,context,count,ttype,level)
 {
 	var TQuestions = Backtory.Object.extend("TQuestions");
 	var qQuery=new Backtory.Query(TQuestions);
 	qQuery.skip(ids[i]);
 	qQuery.limit(1);
+        	qQuery.lessThanOrEqualTo("level",level);
+
 	qQuery.select("_id", "question","ans1","ans2","ans3","ans4","correctAns","field","image_path");
 	qQuery.find({
 		success: function(Qs) {
@@ -71,11 +73,11 @@ function getQuestion_allFields(ids,callback,questions,i,context,count,ttype)
 		}
 	});
 }
-function getQuestionsIds(context,g_fields,g_i,g_type,callback)
+function getQuestionsIds(context,g_fields,g_i,g_type,callback,level)
 {
 	var TQuestions = Backtory.Object.extend("TQuestions");
 	var qQuery=new Backtory.Query(TQuestions); 
-	
+	qQuery.lessThanOrEqualTo("level",level);
 	var count=300;
 	qQuery.count({
 		success: function(max) {
@@ -84,7 +86,7 @@ function getQuestionsIds(context,g_fields,g_i,g_type,callback)
 			
 			getQuestionsPack_allFields(0,[],function(questions){
 				callback(questions,g_Ids);
-			},context,g_type,g_Ids);
+			},context,g_type,g_Ids,level);
 			
 		},
 		error: function(error) {
@@ -93,15 +95,15 @@ function getQuestionsIds(context,g_fields,g_i,g_type,callback)
 	});
 	
 }
-function getQuestionsPack_allFields(l,_questions,callback,context,ttype,Ids)
+function getQuestionsPack_allFields(l,_questions,callback,context,ttype,Ids,level)
 {
 	getQuestion_allFields(Ids,function(questions){
 		context.log("questions.length:"+questions.length);
 		if(l==19)
 			callback(questions);
 		else
-			getQuestionsPack_allFields(l+1,questions,callback,context,ttype,Ids);
-	},_questions,l,context,20,ttype);
+			getQuestionsPack_allFields(l+1,questions,callback,context,ttype,Ids,level);
+	},_questions,l,context,20,ttype,level);
 	
 }
 function getPlayersFields(context,ps,callback)
@@ -170,15 +172,25 @@ function getPlayersFields(context,ps,callback)
 					k=10;
 				fs[j]=k;
 			}
+                        var level=players[0].get("level");
+                        for(var kk=1;kk<players.length;kk++)
+                            level=level+players[kk].get("level");
+                        level=level/players.length;
 			
-			callback(fs,ttype);
+                        if(ttype==5)
+                            if(level>4)
+                                level=10;
+                        if(ttype!=5&&level>8)
+                            level=10;
+                        
+			callback(fs,ttype,level);
 		},
 		error: function(error) {
 			fail(context,error);
 		}
 	});
 }
-function getQuestion(field,ids,callback,questions,i,context,count,ttype)
+function getQuestion(field,ids,callback,questions,i,context,count,ttype,level)
 {
 	var TQuestions = Backtory.Object.extend("TQuestions");
 	var qQuery=new Backtory.Query(TQuestions);
@@ -190,6 +202,7 @@ function getQuestion(field,ids,callback,questions,i,context,count,ttype)
 	//	qQuery.exists("image_path");
 			qQuery.contains("image_path", ".jpg");
 		}
+                qQuery.lessThanOrEqualTo("level",level);
 	qQuery.select("_id", "question","ans1","ans2","ans3","ans4","correctAns","field","image_path");
 	qQuery.find({
 		success: function(Qs) {
@@ -236,7 +249,7 @@ function getQuestion(field,ids,callback,questions,i,context,count,ttype)
 	});
 }
 
-function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype)
+function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype,level)
 {
 // 	context.log(fieldsa);
 	var TQuestions = Backtory.Object.extend("TQuestions");
@@ -247,6 +260,7 @@ function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype)
 		//qQuery.exists("image_path");
 			qQuery.contains("image_path", ".jpg");
 		}
+                qQuery.lessThanOrEqualTo("level",level);
 	//context.log("fieldsa["+l+"]"+fieldsa[l]);
 	qQuery.equalTo("field",fieldsa[l]);
 	qQuery.count({
@@ -256,8 +270,8 @@ function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype)
 				if(l==fieldsa.length-1)
 					callback(questions);
 				else
-					getQuestionsPack(fieldsa,l+1,questions,callback,context,ttype);
-			},_questions,l,context,fieldsa.length,ttype);
+					getQuestionsPack(fieldsa,l+1,questions,callback,context,ttype,level);
+			},_questions,l,context,fieldsa.length,ttype,level);
 		},
 		error: function(error) {
 			fail(context,error);
