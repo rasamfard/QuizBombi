@@ -7,6 +7,7 @@ exports.handler = function(requestBody, context) {
 	var ans2=requestBody.ans2;
 	var ans3=requestBody.ans3;
 	var ans4=requestBody.ans4;
+        var level=Number(requestBody.level);
 	var field=Number(requestBody.field);
 	var correctAns=Number(requestBody.correctAns);
 	var hasImage=requestBody.hasImage;
@@ -18,6 +19,7 @@ exports.handler = function(requestBody, context) {
 			question.set("ans3",ans3);
 			question.set("ans4",ans4);
 			question.set("field",field);
+                        question.set("level",level);
 			question.set("image_path",'');
 			question.set("correctAns",correctAns);
 			question.save({
