@@ -1,10 +1,10 @@
 var Backtory = require('backtory-sdk');
 var requestBodyStr = "";
-var requestPlayer="";
+var requestPlayer = "";
 exports.handler = function (requestBody, context) {
     requestBodyStr = JSON.stringify(requestBody);
     var securityContext = context.getSecurityContext();
-    requestPlayer=securityContext.userId;
+    requestPlayer = securityContext.userId;
     var userId = securityContext.userId;
     var heart = 0;
     var video_heart = 0;
@@ -14,17 +14,38 @@ exports.handler = function (requestBody, context) {
     var video_coin = 0;
     var items = [];
     var type_names = ['heart', 'ticket', '', 'coin', 'head'];
-    
-    
-  //  var coins_count=Math.floor(Math.random() * 8) + 1;
+
+
+    //  var coins_count=Math.floor(Math.random() * 8) + 1;
     //50 150 250 coins 3 ya 2    1
-    //1 2 heart 1 ya 2     3
+    //1 2 heart 1 ya 2 ya  3
     //1 ticket 1 ya 2     4
     //1 head    5
     //puch 2 ya 3     2
-    
-    var types = [0, 1, 2, 3, 4, 0, 3, 3];
+
+    var random_items = [3, 2, 0];
+    var random_coin_counts = [50, 150, 250];
+    var random_heart_counts = [1, 2, 3];
+    var random_ticket_counts = [1, 2, 4];
+
+    var types = [0, 1, 4, 2, 2, 3, 3, random_items[Math.floor(Math.random() * random_items.length)]];
+    types=shuffleArray(types);
     var counts = [1, 1, 0, 1, 1, 1, 1, 1];
+    for (var i = 0; i < types.length; i++)
+    {
+        if (types[i] == 0)
+            counts[i] = random_heart_counts[Math.floor(Math.random() * random_heart_counts.length)];
+        else if (types[i] == 1)
+            counts[i] = random_ticket_counts[Math.floor(Math.random() * random_ticket_counts.length)];
+        else if (types[i] == 3)
+            counts[i] = random_coin_counts[Math.floor(Math.random() * random_coin_counts.length)];
+        else if (types[i] == 2)
+            counts[i] = 1;
+        else if (types[i] == 4)
+            counts[i] = 1;
+    }
+
+
     findPlayer(context, userId, function (player) {
         getRewardRecord(context, userId, function (rec) {
             getWinnerNumber(types, function (number) {
@@ -73,6 +94,13 @@ exports.handler = function (requestBody, context) {
 
 
 };
+function shuffleArray(a) {
+        var i = a.length, t, j;
+        a = a.slice();
+        while (--i)
+            t = a[i], a[i] = a[j = ~~(Math.random() * (i + 1))], a[j] = t;
+        return a;
+    }
 function findHeadItem(context, type, userId, callback)
 {
     getPurchasedItems(context, userId, function (purchase_list) {
@@ -177,7 +205,7 @@ function getWinnerNumber(types, callback)
 }
 function fail(context, error)
 {
-    context.log("userId:"+requestPlayer);
+    context.log("userId:" + requestPlayer);
     context.log("request:" + requestBodyStr);
     context.log("error:" + JSON.stringify(error));
 
@@ -185,7 +213,7 @@ function fail(context, error)
     var rec = new TErrorReports();
     rec.set("error", JSON.stringify(error));
     rec.set("requestBody", requestBodyStr);
-    rec.set("userId",requestPlayer);
+    rec.set("userId", requestPlayer);
     rec.save({
         success: function (rec) {
             context.fail(error);
