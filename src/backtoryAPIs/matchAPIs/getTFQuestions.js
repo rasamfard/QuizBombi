@@ -66,7 +66,7 @@ exports.handler = function (requestBody, context) {
                                         }
                                     });
                                 } else
-                                    succeed(context, {questions: questions, item: item});
+                                    succeed(context, {questions: questions, item: item,coins:coins,tickets:tickets,hearts:hearts});
                             },
                             error: function (error) {
                                 fail(context,error);
