@@ -6,25 +6,28 @@ exports.handler = function (requestBody, context) {
     var userId = securityContext.userId;
     var uid = requestBody.uid;
 
-
+    var coins=1000;
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var invitedUID = extraInfo.get("invitedUID");
         if (invitedUID.length > 0)
-            fail(context, "you have entered an invitation code");
+        {
+            succeed(context, {coins: -1});
+           // fail(context, "you have entered an invitation code");
+        }
         else
         {
             findParentPlayer(context, uid, function (parentPlayer) {
                 extraInfo.set("invitedUID", uid);
                 extraInfo.save({
                     success: function (extraInfo) {
-                        player.set("coin", player.get("coin") + 1000);
+                        player.set("coin", player.get("coin") + coins);
                         player.save({
                             success: function (player) {
                                 parentPlayer.set("coin", parentPlayer.get("coin") + 500);
                                 parentPlayer.save({
                                     success: function (parentPlayer) {
-                                        succeed(context, {message: "successful"});
+                                        succeed(context, {coins: coins});
                                     },
                                     error: function (error) {
                                         context.fail(error);
@@ -46,28 +49,7 @@ exports.handler = function (requestBody, context) {
     });
 
 
-    var name = requestBody.name;
-    var TPlayers = Backtory.Object.extend("TPlayers");
-    var mainQuery = new Backtory.Query(TPlayers);
-    mainQuery.equalTo("userId", player_id);
-    mainQuery.limit(1);
-    mainQuery.find({
-        success: function (list) {
-            player = list[0];
-            player.set("name", name);
-            player.save({
-                success: function (player) {
-                    context.succeed({message: "successful"});
-                },
-                error: function (error) {
-                    context.fail(error);
-                }
-            });
-        },
-        error: function (error) {
-            context.fail(error);
-        }
-    });
+   
 };
 
 function findPlayer(context, userId, callback)
@@ -99,7 +81,7 @@ function findParentPlayer(context, uid, callback)
             if (players.length > 0)
                 callback(players[0]);
             else
-                fail(context, "not found player with uid:" + uid);
+                succeed(context, {coins: 0});
         },
         error: function (error) {
             fail(context, error);
