@@ -15,6 +15,10 @@ exports.handler = function (requestBody, context) {
             succeed(context, {coins: -1});
            // fail(context, "you have entered an invitation code");
         }
+        else if(player.get("uid")==uid)
+        {
+            succeed(context, {coins: -1});
+        }
         else
         {
             findParentPlayer(context, uid, function (parentPlayer) {
