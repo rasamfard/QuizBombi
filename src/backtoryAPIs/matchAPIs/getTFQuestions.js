@@ -5,6 +5,9 @@ exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var player_id = securityContext.userId;
     var currDate = new Date();
+    var coins=[10,50,100];
+    var hearts=[0,0,1];
+    var tickets=[0,0,1];
     getPlayer(context, player_id, function (player) {
         getScreen(context, player, function (screen) {
             var homeItemId = count == 2 ? "5a5b5d97e7e9dc0001a27184" : "5a5b5d98e7e9dc0001a27186";
@@ -56,7 +59,7 @@ exports.handler = function (requestBody, context) {
                                     extraInfo.set("usedHomesTF", usedHomesTF);
                                     extraInfo.save({
                                         success: function (eI) {
-                                            succeed(context, {questions: questions, item: item});
+                                            succeed(context, {questions: questions, item: item,coins:coins,tickets:tickets,hearts:hearts});
                                         },
                                         error: function (error) {
                                             fail(context,error);

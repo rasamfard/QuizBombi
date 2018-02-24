@@ -5,7 +5,7 @@ exports.handler = function(requestBody, context) {
 	var rewardStep=requestBody.rewardStep-1;
 	var coins=[10,50,100];
 	var hearts=[0,0,1];
-	var tickets[0,0,1];
+	var tickets=[0,0,1];
 	var player_id=securityContext.userId;
 	var TPlayers = Backtory.Object.extend("TPlayers");
 	var mainQuery=new Backtory.Query(TPlayers);
