@@ -43,7 +43,7 @@ exports.handler = function (requestBody, context) {
 
                 var lastHomeTime = new Date(homeItem.addTime);
                 var diffMins = Math.floor(Math.abs(currDate - lastHomeTime) / 60000);
-                var timeOk = diffMins > lifeTime ? true : false;
+                var timeOk = diffMins >= lifeTime ? true : false;
                 if (timeOk)
                 {
                     getQuestions(context, count, function (questions) {
