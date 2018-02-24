@@ -12,12 +12,17 @@
   "updateMyAvatar": {
     "handlerName": "backtoryAPIs/otherAPIs/updateMyAvatar.handler",
     "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
+    "authenticationMode": "AUTHENTICATED"
   },
   "updateMyName": {
     "handlerName": "backtoryAPIs/otherAPIs/updateMyName.handler",
     "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
+    "authenticationMode": "AUTHENTICATED"
+  },
+  "setInviteCode": {
+    "handlerName": "backtoryAPIs/otherAPIs/setInviteCode.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   },
    "getScreenItems": {
     "handlerName": "backtoryAPIs/mainScreenAPIs/getScreenItems.handler",
