@@ -10,7 +10,7 @@ exports.handler = function (requestBody, context) {
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var invitedUID = extraInfo.get("invitedUID");
-        if (invitedUID.length > 0)
+        if (invitedUID!=null&&invitedUID.length > 0)
         {
             succeed(context, {coins: -1});
            // fail(context, "you have entered an invitation code");
