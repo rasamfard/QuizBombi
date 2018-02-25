@@ -199,7 +199,7 @@ function getWinnerNumber(types, callback)
 {
     var number = Math.floor(Math.random() * 8) + 1;
     if (types[number - 1] == 4)
-        getWinnerNumber(callback);
+        getWinnerNumber(types,callback);
     else
         callback(number);
 }
