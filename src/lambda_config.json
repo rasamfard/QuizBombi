@@ -68,7 +68,7 @@
   ,
    "getQuestions": {
     "handlerName": "backtoryAPIs/matchAPIs/getQuestions.handler",
-    "timeLimitInMilliSeconds": 3000,
+    "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   },
    "gameEnded": {
