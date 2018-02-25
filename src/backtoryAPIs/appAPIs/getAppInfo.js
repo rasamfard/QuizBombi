@@ -28,12 +28,12 @@ exports.handler = function(requestBody, context) {
 				succeed(context,{versionCode:last.get("codeVersion"),apkURL:last.get("apkURL"),changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
 				}
 			else
-				succeed(context,{versionCode:currentVersion,apkURL:"http://quizbombi.ir/resources/assets/app/quizbombi.apk",changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
+				succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
 // 				fail(context,"this is the last version");
 		},
 		error: function(error) {
 			var changes2=[];
-			succeed(context,{versionCode:currentVersion,apkURL:"http://quizbombi.ir/resources/assets/app/quizbombi.apk",changes:changes2,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
+			succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes2,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
 			//fail(context,error);
 		}
 	});
