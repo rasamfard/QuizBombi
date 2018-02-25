@@ -31,6 +31,8 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
 // 					bots[i].set("name",names[Math.ceil((Math.random()+0.01)*(49.9))]);
 // 					bots[i].set("favoriteField",rfields);
 // 					bots[i].set("_id",bots[i].get("_id")+"3");
+                    var timeAction=[];
+                    var ansAction=[];
                     var botActions = [];
                     var seconds = [8, 40, 67, 99, 131];
                     var k = 0;
@@ -40,12 +42,16 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                         var rTime = Math.floor(((Math.random() * 6) + seconds[j]) * 100);
                         var action = Math.ceil((Math.random() + 0.01) * (3.9));
                         botActions[k] = {time: rTime, action: action};
+                        ansAction[k] = action;
+                        timeAction[k]=rTime;
                         k++;
                         for (var l = 1; l < rActions; l++)
                         {
                             rTime = Math.floor(((Math.random() * 6) + seconds[j]) * 100);
                             action = Math.ceil((Math.random() + 0.01) * (3.9));
                             botActions[k] = {time: rTime, action: action};
+                            ansAction[k] = action;
+                            timeAction[k]=rTime;
                             k++;
                         }
                     }
@@ -54,7 +60,7 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                         for (var m = 0; m < bots2.length; m++)
                             if (bots2[m].name == name)
                                 name = names[Math.ceil((Math.random() + 0.01) * (49.9))];
-                    bots2[i] = {name: name, favoriteField: rfields, userId: bots[i].get("userId").substr(6, 4) + "3", avatar: bots[i].get("avatar"), botActions: botActions};
+                    bots2[i] = {name: name, favoriteField: rfields, userId: bots[i].get("userId").substr(6, 4) + "3", avatar: bots[i].get("avatar"), bA: ansAction,tA:timeAction};
 
 // 					bots[i].set("botActions",botActions);
                 }

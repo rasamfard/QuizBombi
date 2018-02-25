@@ -9,7 +9,6 @@ exports.handler = function (requestBody, context) {
 
     var date = new Date();
     getPlayer(context, player_id, function (player) {
-
         getScreen(context, player, function (screen) {
             context.log(screen);
             var items = screen.get("items");
