@@ -11,7 +11,7 @@ exports.handler = function (requestBody, context) {
         {
             var lastPackageTime = new Date(extraInfo.get("lastPackageTime").split("UTC")[0] + "Z");
             var diffHours = Math.floor(Math.abs(currDate - lastPackageTime) / 3600000);
-            packageExists = diffHours > 1 ? true : false;
+            packageExists = diffHours >= 24 ? true : false;
         }
         if (packageExists)
         {
