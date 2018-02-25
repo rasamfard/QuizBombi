@@ -180,8 +180,14 @@ function getPlayersFields(context,ps,callback)
                         if(ttype==5)
                             if(level>4)
                                 level=10;
-                        if(ttype!=5&&level>8)
-                            level=10;
+                        
+                        if(ttype!=5)
+                        {
+                            if(level>14)
+                                level=10;
+                            else
+                                level=5;
+                        }
                         
 			callback(fs,ttype,level);
 		},
