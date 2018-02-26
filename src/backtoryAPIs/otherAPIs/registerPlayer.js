@@ -64,8 +64,8 @@ function createScreenItems(context, player, callback)
     var screen = new TScreenItems();
     screen.set("player", player);
     var items = [];
-    var itemIds = ["5a5b5d97e7e9dc0001a27184","5a5b5d99149ec00001b1633d"];
-    var positions = [13,14];
+    var itemIds = ["5a5b5d97e7e9dc0001a27184","5a5b5d99149ec00001b1633d","5a5b6138e7e9dc0001a29ba7","5a5b6138e7e9dc0001a29ba7","5a5b60923d60fd0001a1c9d9","5a5b60923d60fd0001a1c9d9"];
+    var positions = [13,14,1,10,2,9];
     var date = new Date();
     for (var i = 0; i < itemIds.length; i++)
             items[items.length] = {itemId: itemIds[i], pose: positions[i], addTime: date};
