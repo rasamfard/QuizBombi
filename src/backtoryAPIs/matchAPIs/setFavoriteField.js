@@ -23,6 +23,7 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                 var names = ['mohammad', 'mamad', 'amirali', 'mitra', 'hosein', 'ali', 'mahdi', 'nima', 'mobin', 'parham', 'yaali', 'fati', 'maryam', 'narges', 'setayesh', 'zahra', 'hasti', 'zeinab', 'sari', 'hani', 'asal', 'mahdie', 'yalda', 'hadis', 'ayda', 'pari', 'elina', 'baran', 'nazijoon', 'nanaz', 'reza', 'alireza', 'amiri', 'meiti', 'mamali', 'brandeha', 'ghahremana', 'shayn', 'arian', 'mesi', 'ronaldo', 'iran', 'kia', 'ehsani', 'mahi', 'alijoon', 'nafas', 'nioosh', 'joojoo', 'rostam', 'palang', 'tehroon'];
                 for (var i = 0; i < bots.length; i++)
                 {
+                    
                     var rfields = [];
                     rfields[0] = fields[i + 1];
                     rfields[1] = Math.ceil((Math.random() + 0.01) * (7.9));
@@ -60,7 +61,10 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                         for (var m = 0; m < bots2.length; m++)
                             if (bots2[m].name == name)
                                 name = names[Math.ceil((Math.random() + 0.01) * (49.9))];
-                    bots2[i] = {name: name, favoriteField: rfields, userId: bots[i].get("userId").substr(6, 4) + "3", avatar: bots[i].get("avatar"), bA: ansAction,tA:timeAction};
+                    var head=Math.floor(Math.random()*24)+1;
+                    var body=Math.floor(Math.random()*24)+1;
+                    var avatar=[head.toString(),body.toString(),"1"];
+                    bots2[i] = {name: name, favoriteField: rfields, userId: bots[i].get("userId").substr(6, 4) + "3", avatar: avatar, bA: ansAction,tA:timeAction};
 
 // 					bots[i].set("botActions",botActions);
                 }
