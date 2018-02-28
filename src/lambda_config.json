@@ -60,6 +60,11 @@
     "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   },
+   "setFavoriteField2": {
+    "handlerName": "backtoryAPIs/matchAPIs/setFavoriteField2.handler",
+    "timeLimitInMilliSeconds": 7000,
+    "authenticationMode": "AUTHENTICATED"
+  },
    "setRewardCode": {
     "handlerName": "backtoryAPIs/matchAPIs/setRewardCode.handler",
     "timeLimitInMilliSeconds": 3000,
