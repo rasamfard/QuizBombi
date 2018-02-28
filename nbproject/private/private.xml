@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/shopAPIs/getGiftBox.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/registerPlayer.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/setFavoriteField2.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getQuestions.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/setFavoriteField.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/appAPIs/getAppInfo.js</file>
@@ -13,6 +14,7 @@
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/appAPIs/globalFunc.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/setInviteCode.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFQuestions.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/gameEnded.js</file>
         </group>
     </open-files>
 </project-private>

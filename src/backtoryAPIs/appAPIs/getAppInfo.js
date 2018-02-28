@@ -3,6 +3,17 @@ var Backtory = require('backtory-sdk');
 exports.handler = function(requestBody, context) {
 	var securityContext = context.getSecurityContext();
 	var currentVersion=requestBody.currentVersion;
+        var botSpawnTime=8;
+        //battle 1
+    var BattlesInfo=[];
+    BattlesInfo[0]={battleType:1,minPlayer:1,maxPlayer:6,backtoryTimes:[20, 20, 30,40,50,60],battleStageTimes:[27, 59, 86, 118]};    
+    BattlesInfo[1]={battleType:2,minPlayer:2,maxPlayer:10,backtoryTimes:[30,40,50,60],battleStageTimes:[27, 59, 86, 118, 150, 177, 209, 236, 263]};
+    BattlesInfo[2]={battleType:3,minPlayer:2,maxPlayer:6,backtoryTimes:[60],battleStageTimes:[27, 59, 86, 118]};
+    BattlesInfo[3]={battleType:4,minPlayer:2,maxPlayer:6,backtoryTimes:[60],battleStageTimes:[27, 59, 86, 118]};
+    BattlesInfo[4]={battleType:5,minPlayer:3,maxPlayer:3,backtoryTimes:[20,30,40,50,60],battleStageTimes:[27, 59, 86, 118]};        
+    BattlesInfo[5]={battleType:6,minPlayer:1,maxPlayer:6,backtoryTimes:[20, 20,30,40,50,60],battleStageTimes:[32, 59, 86, 113, 140, 167, 194, 221, 248, 275, 302, 329, 356, 383, 410, 437, 464, 491, 518]};        
+    BattlesInfo[6]={battleType:7,minPlayer:1,maxPlayer:6,backtoryTimes:[20,30,40,50,60],battleStageTimes:[27, 59, 86, 118]};        
+        
 	var TAppInfo = Backtory.Object.extend("TAppInfo");
 	var mainQuery=new Backtory.Query(TAppInfo); 
 	mainQuery.greaterThan("codeVersion", currentVersion);
@@ -25,15 +36,15 @@ exports.handler = function(requestBody, context) {
 				{
 					var last=list[list.length-1];
 					
-				succeed(context,{versionCode:last.get("codeVersion"),apkURL:last.get("apkURL"),changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
+				succeed(context,{versionCode:last.get("codeVersion"),apkURL:last.get("apkURL"),changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend,BattlesInfo:BattlesInfo,botSpawnTime:botSpawnTime});
 				}
 			else
-				succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
+				succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend,BattlesInfo:BattlesInfo,botSpawnTime:botSpawnTime});
 // 				fail(context,"this is the last version");
 		},
 		error: function(error) {
 			var changes2=[];
-			succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes2,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend});
+			succeed(context,{versionCode:currentVersion,apkURL:"https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa",changes:changes2,minPlayers:minPlayers,newHeartTime:newHeartTime,battleRewards_mini:battleRewards_mini,battleRewards_mega:battleRewards_mega,battleRewards_friend:battleRewards_friend,BattlesInfo:BattlesInfo,botSpawnTime:botSpawnTime});
 			//fail(context,error);
 		}
 	});
