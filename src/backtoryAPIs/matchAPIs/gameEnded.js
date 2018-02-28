@@ -179,7 +179,7 @@ function missions(context,pl,t,r,gs,ans)
 				pl.set("currentMissionStep",1);
 			break;
 		case 4:
-			if(t==2)
+			if(t==7)
 			{
 				var step=pl.get("currentMissionStep")+1;
 				if(step>3)
@@ -222,7 +222,7 @@ function missions(context,pl,t,r,gs,ans)
 			}
 			break;
 		case 11:
-			if(t==2&&r<4)
+			if(t==7&&r<4)
 				pl.set("currentMissionStep",1);
 			break;
 
@@ -250,11 +250,11 @@ function missions(context,pl,t,r,gs,ans)
 				pl.set("currentMissionStep",1);
 			break;
 		case 16:
-			if(t==2&&gs>=20)
+			if(t==7&&gs>=10)
 				pl.set("currentMissionStep",1);
 			break;
 		case 17:
-			if(t==2&&r==1)
+			if(t==7&&r==1)
 			{
 				var step=pl.get("currentMissionStep")+1;
 				if(step>3)
