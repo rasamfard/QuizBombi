@@ -43,6 +43,8 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                         var rTime = Math.floor(((Math.random() * 6) + seconds[j]) * 10);
                         var action = Math.ceil((Math.random() + 0.01) * (3.9));
                         botActions[k] = {time: rTime, action: action};
+                        if(!(rActions>1))
+                            action=-1;
                         ansAction[k] = action;
                         timeAction[k]=rTime;
                         k++;
@@ -51,6 +53,7 @@ function updatePlayerData(context, qCount, p, playerId, fields) {
                             rTime = Math.floor(((Math.random() * 6) + seconds[j]) * 10);
                             action = Math.ceil((Math.random() + 0.01) * (3.9));
                             botActions[k] = {time: rTime, action: action};
+                          
                             ansAction[k] = action;
                             timeAction[k]=rTime;
                             k++;
