@@ -65,6 +65,11 @@
     "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   },
+   "joinToMatch": {
+    "handlerName": "backtoryAPIs/matchAPIs/joinToMatch.handler",
+    "timeLimitInMilliSeconds": 7000,
+    "authenticationMode": "AUTHENTICATED"
+  },
    "setRewardCode": {
     "handlerName": "backtoryAPIs/matchAPIs/setRewardCode.handler",
     "timeLimitInMilliSeconds": 3000,
