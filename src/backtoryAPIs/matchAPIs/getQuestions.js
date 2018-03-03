@@ -13,6 +13,7 @@ exports.handler = function(requestBody, context) {
 		}
 		else
 		{
+                    context.log("fields:"+fields);
 			getQuestionsPack(fields,0,[],function(questions){
 				succeed(context,{questions:questions});
 			},context,ttype,level);
@@ -314,7 +315,7 @@ function fail(context,error)
 }
 function succeed(context,result)
 {
- 	context.log("result:"+JSON.stringify(result));
+ 	//context.log("result:"+JSON.stringify(result));
 	
 		context.succeed(result);
 }
