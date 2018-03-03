@@ -1,5 +1,5 @@
 var Backtory = require('backtory-sdk');
-var imagesURL='http://quizbombi.ir/public/images/';
+var imagesURL='http://storage.backtory.com/quizbombi_images/';
 exports.handler = function(requestBody, context) {
  	//context.log(JSON.stringify(requestBody));
 	getPlayersFields(context,requestBody.participants,function(fields,ttype,level){
