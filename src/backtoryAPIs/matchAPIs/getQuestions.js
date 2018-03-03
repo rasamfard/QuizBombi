@@ -134,6 +134,10 @@ function getPlayersFields(context,ps,callback)
 					ttype=3;
 				qCount=qCount-200;
 				}
+                                else if(qCount>300&&qCount<400)
+				{
+				qCount=qCount-300;
+				}
 			else if(qCount>500&&qCount<600)
 				{
 					ttype=4;
