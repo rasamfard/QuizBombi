@@ -16,8 +16,8 @@ exports.handler = function (requestBody, context) {
         if (packageExists)
         {
             var packageId = extraInfo.get("lastPackageId") + 1;
-//            if (packageId > 3)
-//                packageId = 1;
+            if (packageId > 3)
+                packageId = 1;
 //            extraInfo.set("lastPackageId", packageId);
 //            extraInfo.set("lastPackageTime", currDate);
 //            extraInfo.save({
