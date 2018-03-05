@@ -1,5 +1,5 @@
 var Backtory = require('backtory-sdk');
-
+var imagesURL='http://storage.backtory.com/quizbombi_images/';
 exports.handler = function (requestBody, context) {
     var count = requestBody.count;
     var securityContext = context.getSecurityContext();
@@ -156,6 +156,9 @@ function getQuestion(context, ids, i, qs, count, callback)
     qQuery.find({
         success: function (Qs) {
             qs[i] = Qs[0];
+            var image_path=qs[i].get("image_path");
+            if(image_path&&image_path.length>0)
+                qs[i].set("image_path",imagesURL+image_path);
             i++;
             if (i < count)
                 getQuestion(context, ids, i, qs, count, callback);
