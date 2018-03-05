@@ -150,7 +150,13 @@
     "handlerName": "backtoryAPIs/rankAPIs/resetDailyRankings.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED",
-    "schedulingCron": "40 11 */1 * ?"
+    "schedulingCron": "40 11 ? * ?"
+  },
+   "resetWeeklyRankings": {
+    "handlerName": "backtoryAPIs/rankAPIs/resetWeeklyRankings.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED",
+    "schedulingCron": "1 6 ? * 1"
   },
    "test": {
     "handlerName": "backtoryAPIs/test.handler",
