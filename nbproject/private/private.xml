@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/shopAPIs/getGiftBox.js</file>
-            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getPlayerRewards.js</file>
-            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/shopAPIs/consumeGiftBox.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getQuestions.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/rankAPIs/resetDailyRankings.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/rankAPIs/resetWeeklyRankings.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/lambda_config.json</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFQuestions.js</file>
         </group>
     </open-files>
 </project-private>
