@@ -146,6 +146,12 @@
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
   },
+   "resetDailyRankings": {
+    "handlerName": "backtoryAPIs/rankAPIs/resetDailyRankings.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED",
+    "schedulingCron": "40 11 */1 * ?"
+  },
    "test": {
     "handlerName": "backtoryAPIs/test.handler",
     "timeLimitInMilliSeconds": 7000,
