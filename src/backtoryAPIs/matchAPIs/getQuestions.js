@@ -99,7 +99,7 @@ function getQuestionsIds(context,g_fields,g_i,g_type,callback,level)
 function getQuestionsPack_allFields(l,_questions,callback,context,ttype,Ids,level)
 {
 	getQuestion_allFields(Ids,function(questions){
-		context.log("questions.length:"+questions.length);
+		//context.log("questions.length:"+questions.length);
 		if(l==10)
 			callback(questions);
 		else
