@@ -4,7 +4,21 @@ exports.handler = function (requestBody, context) {
     context.log(JSON.stringify(requestBody));
     updatePlayers(context, requestBody.usersId, 0);
 };
-
+function updateNormalRanks(pId, callback)
+{
+    var event = new Backtory.Event("UpdateRank_Normal");
+    event.add("Score", 0);
+    event.add("matchCount", 1);
+    event.add("randomScore", Math.ceil(Math.random() * (1000000)));
+    event.sendFromUser(pId, {
+        success: function () {
+            callback();
+        },
+        error: function (error) {
+            callback();
+        }
+    });
+}
 function updatePlayers(context, players, _index)
 {
     var TPlayers = Backtory.Object.extend("TPlayers");
@@ -18,17 +32,20 @@ function updatePlayers(context, players, _index)
             var type = calcType(qCount);
             pr = decreaseFunc(pr, type);
             pr.set("matchCount", pr.get("matchCount") + 1);
-            pr.save({
-                success: function (p2) {
-                    if (_index == players.length - 1)
-                        succeed(context, {});
-                    else
-                        updatePlayers(context, players, _index + 1);
-                },
-                error: function (error) {
-                    fail(context, error);
-                }
+            updateNormalRanks(players[_index], function () {
+                pr.save({
+                    success: function (p2) {
+                        if (_index == players.length - 1)
+                            succeed(context, {});
+                        else
+                            updatePlayers(context, players, _index + 1);
+                    },
+                    error: function (error) {
+                        fail(context, error);
+                    }
+                });
             });
+
         },
         error: function (error) {
             fail(context, error);
@@ -60,9 +77,9 @@ function decreaseFunc(pr, type)
         if (ticket < 0)
             ticket = 0;
         pr.set("ticket", ticket);
-        
+
     }
-    if (type == 3 )
+    if (type == 3)
     {
         var coin = pr.get("coin");
         coin = coin - 10;

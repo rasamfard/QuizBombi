@@ -111,6 +111,7 @@ function updateNormalRanks(pId,score,callback)
 {
 	var event = new Backtory.Event("UpdateRank_Normal");
 	event.add("Score", score);
+        event.add("matchCount",0);
 	event.add("randomScore", Math.ceil(Math.random()*(1000000)));
 	event.sendFromUser(pId, {
 		success: function() {
