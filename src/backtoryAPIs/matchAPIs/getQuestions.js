@@ -100,11 +100,11 @@ function getQuestionsPack_allFields(l,_questions,callback,context,ttype,Ids,leve
 {
 	getQuestion_allFields(Ids,function(questions){
 		context.log("questions.length:"+questions.length);
-		if(l==19)
+		if(l==10)
 			callback(questions);
 		else
 			getQuestionsPack_allFields(l+1,questions,callback,context,ttype,Ids,level);
-	},_questions,l,context,20,ttype,level);
+	},_questions,l,context,11,ttype,level);
 	
 }
 function getPlayersFields(context,ps,callback)
