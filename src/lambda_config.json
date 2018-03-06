@@ -48,6 +48,11 @@
     "handlerName": "backtoryAPIs/appAPIs/getAppInfo.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "getActivePlayers": {
+    "handlerName": "backtoryAPIs/appAPIs/getActivePlayers.handler",
+    "timeLimitInMilliSeconds": 3000,
+    "authenticationMode": "AUTHENTICATED"
   }
   ,
    "getMyProfile2": {
