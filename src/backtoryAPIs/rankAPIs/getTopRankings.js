@@ -86,7 +86,7 @@ function getRank(leaderId, type, player, callBack, context)
                 {
                     var event = new Backtory.Event("UpdateRank_Normal");
                     event.add("Score", 0);
-                    event.add("matchCount", 0);
+//                    event.add("matchCount", 0);
                     event.add("randomScore", Math.ceil(Math.random() * (1000000)));
                     event.sendFromUser(player.get("userId"), {
                         success: function () {
