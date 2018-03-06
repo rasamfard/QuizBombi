@@ -1,19 +1,20 @@
 var Backtory = require('backtory-sdk');
 
 exports.handler = function(requestBody, context) {
-	findPlayers(context);
+    var hours=requestBody.hours;
+	findPlayers(context,hours);
         
         
 	
 };
-function findPlayers(context)
+function findPlayers(context,hours)
 {
     var TPlayers = Backtory.Object.extend("TPlayers");
     var mainQuery = new Backtory.Query(TPlayers);
     
     
     var date=new Date();
-    var myStartDate = new Date(date.getTime() -  (48 * 3600000) ).toISOString();
+    var myStartDate = new Date(date.getTime() -  (hours * 3600000) ).toISOString();
     myStartDate = myStartDate.split("Z")[0]+"UTC";
     mainQuery.greaterThan("updatedAt",myStartDate);
     mainQuery.count({
