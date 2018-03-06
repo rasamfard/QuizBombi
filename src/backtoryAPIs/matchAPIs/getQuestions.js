@@ -265,7 +265,7 @@ function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype,level)
 // 	context.log(fieldsa);
 	var TQuestions = Backtory.Object.extend("TQuestions");
 	var qQuery=new Backtory.Query(TQuestions); 
-	//context.log("type"+ttype);
+	context.log("level:"+level);
 	if(ttype==6)
 		{
 		//qQuery.exists("image_path");
@@ -278,10 +278,11 @@ function getQuestionsPack(fieldsa,l,_questions,callback,context,ttype,level)
 		success: function(max) {
 			//context.log("max"+max);
 			getQuestion(fieldsa[l],randomNumberGenerator(max,1),function(questions){
-				if(l==fieldsa.length-1)
+                            if(l<fieldsa.length-1)
+                                getQuestionsPack(fieldsa,l+1,questions,callback,context,ttype,level);
+                            else
 					callback(questions);
-				else
-					getQuestionsPack(fieldsa,l+1,questions,callback,context,ttype,level);
+					
 			},_questions,l,context,fieldsa.length,ttype,level);
 		},
 		error: function(error) {
