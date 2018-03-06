@@ -78,8 +78,8 @@ function getRank(leaderId, type, player, callBack, context)
                 
                 if (type == 2 || type == 3)
                 {
-                    player.set("score", scores[1]);
-                    player.set("matchCount", scores[0]);
+                 //   player.set("score", scores[1]);
+                    player.set("matchCount", scores[1]);
                 }
 //                else
 //                    player.set("matchCount", scores[1]);
