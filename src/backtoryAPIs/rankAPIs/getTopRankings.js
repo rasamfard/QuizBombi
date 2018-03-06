@@ -74,11 +74,11 @@ function getRank(leaderId, type, player, callBack, context)
         leaderBoard.getUserRank(player.get("userId"), {
             success: function (rank, scores) {
                 player.set("rank", rank);
-                player.set("score", scores[0]);
+                player.set("score", scores[1]);
                 if (type == 2 || type == 3)
-                    player.set("matchCount", scores[1]);
-                else
-                    player.set("matchCount", scores[1]);
+                    player.set("matchCount", scores[0]);
+//                else
+//                    player.set("matchCount", scores[1]);
                 callBack();
             },
             error: function (error) {
@@ -92,7 +92,7 @@ function getRank(leaderId, type, player, callBack, context)
                         success: function () {
                             player.set("rank", 0);
                             player.set("score", 0);
-                            player.set("matchCount", 0);
+//                            player.set("matchCount", 0);
                             callBack();
                         },
                         error: function (error) {

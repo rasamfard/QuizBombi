@@ -6,18 +6,18 @@ exports.handler = function (requestBody, context) {
 };
 function updateNormalRanks(pId, callback)
 {
-    var event = new Backtory.Event("UpdateRank_Normal");
-    event.add("Score", 0);
-    event.add("matchCount", 1);
-    event.add("randomScore", Math.ceil(Math.random() * (1000000)));
-    event.sendFromUser(pId, {
-        success: function () {
+//    var event = new Backtory.Event("UpdateRank_Normal");
+//    event.add("Score", 0);
+//    event.add("matchCount", 1);
+//    event.add("randomScore", Math.ceil(Math.random() * (1000000)));
+//    event.sendFromUser(pId, {
+//        success: function () {
             callback();
-        },
-        error: function (error) {
-            callback();
-        }
-    });
+//        },
+//        error: function (error) {
+//            callback();
+//        }
+//    });
 }
 function updatePlayers(context, players, _index)
 {
