@@ -4,7 +4,7 @@ exports.handler = function (requestBody, context) {
     var Ids = requestBody.Ids;
     var level = requestBody.level;
     getQuestions(context, Ids, level, 0, [], function (questions) {
-        succeed(context, {questions: questions, Ids: Ids, level: level});
+        succeed(context, {questions: questions});
     });
 };
 
