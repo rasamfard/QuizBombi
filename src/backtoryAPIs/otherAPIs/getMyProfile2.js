@@ -12,11 +12,11 @@ exports.handler = function (requestBody, context) {
     mainQuery.find({
         success: function (list2) {
             var pp = list2[0];
-            context.log("player:"+JSON.stringify(pp));
+           // context.log("player:"+JSON.stringify(pp));
             updateEnergy(context, pp, function () {
-                context.log("updateEnergy");
+           //     context.log("updateEnergy");
                 checkInfinitEnergy(context, pp, function () {
-                    context.log(JSON.stringify(pp));
+             //       context.log(JSON.stringify(pp));
                     if (pp.get("heartLastTime") != null)
                     {
                         var testDate = new Date(pp.get("heartLastTime")).toUTCString();
@@ -24,6 +24,7 @@ exports.handler = function (requestBody, context) {
                     }
                     pp.set("telegramAndVote",pp.get("extraInfo").get("telegramAndVote"));
                     pp.get("currentMission").set("currentMissionStep", pp.get("currentMissionStep"));
+                     context.log("player:"+JSON.stringify(pp));
                     context.succeed(pp);
                     // 				var leaderBoard = new Backtory.LeaderBoard("5992e583e4b0dce69e446541");
                     // 				leaderBoard.getUserRank(player_id, {
