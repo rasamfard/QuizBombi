@@ -22,6 +22,7 @@ exports.handler = function (requestBody, context) {
                         var testDate = new Date(pp.get("heartLastTime")).toUTCString();
                         pp.set("heartLastTime", testDate);
                     }
+                    pp.set("telegramAndVote",pp.get("extraInfo").get("telegramAndVote"));
                     pp.get("currentMission").set("currentMissionStep", pp.get("currentMissionStep"));
                     context.succeed(pp);
                     // 				var leaderBoard = new Backtory.LeaderBoard("5992e583e4b0dce69e446541");
