@@ -167,20 +167,5 @@
     "handlerName": "backtoryAPIs/test.handler",
     "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
-  }, 
-  "storeTFQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/storeTFQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
-  }, 
-  "updateTFQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/updateTFQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
-  }, 
-  "deleteTFQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/deleteTFQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
   }
 }
