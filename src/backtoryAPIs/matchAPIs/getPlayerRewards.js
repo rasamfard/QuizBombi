@@ -5,56 +5,76 @@ exports.handler = function (requestBody, context) {
     var userId = securityContext.userId;
     var type = 0;
     type = requestBody.type;
-    findPlayer(context, userId, function (player) {
-        findRewardsRec(context, userId, function (rec) {
-            var items = rec.get("items");
-            var extraInfo = player.get("extraInfo");
-            if (type == 0)
-                player.set("coin", player.get("coin") + rec.get("coin"));
-            if (type == 1)
-            {
-                player.set("heart", player.get("heart") + rec.get("video_heart"));
-                player.set("coin", player.get("coin") + rec.get("video_coin"));
-            }
-            if (type == 2)
-            {
-                var heart = player.get("heart") + rec.get("heart");
-                var coin = player.get("coin") + rec.get("coin");
-                var ticket = player.get("ticket") + rec.get("ticket");
-                player.set("heart", heart);
-                player.set("coin", coin);
-                player.set("ticket", ticket);
-                //player.set("coin",player.get("coin")+rec.get("video_coin"));
 
-            }
-            if (type == 3)
-            {
-                var heart = player.get("heart") + rec.get("video_heart");
-                var coin = player.get("coin") + rec.get("video_coin");
-                var ticket = player.get("ticket") + rec.get("video_ticket");
-                player.set("heart", heart);
-                player.set("coin", coin);
-                player.set("ticket", ticket);
-                //player.set("coin",player.get("coin")+rec.get("video_coin"));
+    saveTapsell(type, userId, function () {
+        findPlayer(context, userId, function (player) {
+            findRewardsRec(context, userId, function (rec) {
+                var items = rec.get("items");
+                var extraInfo = player.get("extraInfo");
+                if (type == 0)
+                    player.set("coin", player.get("coin") + rec.get("coin"));
+                if (type == 1)
+                {
+                    player.set("heart", player.get("heart") + rec.get("video_heart"));
+                    player.set("coin", player.get("coin") + rec.get("video_coin"));
+                }
+                if (type == 2)
+                {
+                    var heart = player.get("heart") + rec.get("heart");
+                    var coin = player.get("coin") + rec.get("coin");
+                    var ticket = player.get("ticket") + rec.get("ticket");
+                    player.set("heart", heart);
+                    player.set("coin", coin);
+                    player.set("ticket", ticket);
+                    //player.set("coin",player.get("coin")+rec.get("video_coin"));
 
-            }
+                }
+                if (type == 3)
+                {
+                    var heart = player.get("heart") + rec.get("video_heart");
+                    var coin = player.get("coin") + rec.get("video_coin");
+                    var ticket = player.get("ticket") + rec.get("video_ticket");
+                    player.set("heart", heart);
+                    player.set("coin", coin);
+                    player.set("ticket", ticket);
+                    //player.set("coin",player.get("coin")+rec.get("video_coin"));
 
-            if (type == 4)
-            {
-                var currDate = new Date();
-                var packageId = extraInfo.get("lastPackageId") + 1;
-                if (packageId > 3)
-                    packageId = 1;
-                extraInfo.set("lastPackageId", packageId);
-                extraInfo.set("lastPackageTime", currDate);
-                items = addFreeItemsToPlayer(context, player, items);
-            }
-            clearRewards(context, rec);
-            saveAll(context, player, extraInfo, rec, items, type);
+                }
+
+                if (type == 4)
+                {
+                    var currDate = new Date();
+                    var packageId = extraInfo.get("lastPackageId") + 1;
+                    if (packageId > 3)
+                        packageId = 1;
+                    extraInfo.set("lastPackageId", packageId);
+                    extraInfo.set("lastPackageTime", currDate);
+                    items = addFreeItemsToPlayer(context, player, items);
+                }
+                clearRewards(context, rec);
+                saveAll(context, player, extraInfo, rec, items, type);
+            });
         });
     });
 
+
 };
+
+function saveTapsell(type, userId, callback)
+{
+    var TTapsell = Backtory.Object.extend("TTapsell");
+    var rec = new TTapsell();
+    rec.set("type", type);
+    rec.set("userId", userId);
+    rec.save({
+        success: function (rec) {
+            callback();
+        },
+        error: function (error) {
+            callback();
+        }
+    });
+}
 //var x = ["a","b","c","t"];
 //var y = ["d","a","t","e","g"];
 //var myArray = y.filter( function( el ) {
@@ -106,8 +126,8 @@ function filterPurchasedItems(context, player, items, callback)
 {
     getPurchasedItems(context, player, function (plist) {
         var flist = items.filter(function (el) {
-            return plist.findIndex(function (pl){
-                return pl.get("item").get("_id")==el._id;
+            return plist.findIndex(function (pl) {
+                return pl.get("item").get("_id") == el._id;
             }) < 0;
         });
         var newItems = createItemsObjects(flist);
@@ -116,25 +136,24 @@ function filterPurchasedItems(context, player, items, callback)
 }
 function addItemsToPlayer(context, player, items, ii, callback)
 {
-    if(items.length>0)
+    if (items.length > 0)
     {
-    var TPurchases = Backtory.Object.extend("TPurchases");
-    var purchase = new TPurchases();
-    purchase.set("userId", player.get("userId"));
-    purchase.set("item", items[ii]);
-    purchase.save({
-        success: function (purchase) {
-            if (ii < items.length - 1)
-                addItemsToPlayer(context, player, items, ii + 1, callback);
-            else
-                callback();
-        },
-        error: function (error) {
-            context.fail(error);
-        }
-    });
-    }
-    else
+        var TPurchases = Backtory.Object.extend("TPurchases");
+        var purchase = new TPurchases();
+        purchase.set("userId", player.get("userId"));
+        purchase.set("item", items[ii]);
+        purchase.save({
+            success: function (purchase) {
+                if (ii < items.length - 1)
+                    addItemsToPlayer(context, player, items, ii + 1, callback);
+                else
+                    callback();
+            },
+            error: function (error) {
+                context.fail(error);
+            }
+        });
+    } else
         callback();
 }
 function clearRewards(context, rec)
