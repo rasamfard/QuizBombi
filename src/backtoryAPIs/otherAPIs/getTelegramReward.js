@@ -6,8 +6,8 @@ exports.handler = function (requestBody, context) {
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var telegramAndVote = extraInfo.get("telegramAndVote");
-        if(telegramAndVote==null)
-            telegramAndVote=0;
+        if (telegramAndVote == null)
+            telegramAndVote = 0;
         //1: telegram
         //2: vote
         //3: vote and telegram
@@ -16,7 +16,15 @@ exports.handler = function (requestBody, context) {
             extraInfo.set("telegramAndVote", telegramAndVote + 1);
             extraInfo.save({
                 success: function (extraInfo) {
-                    succeed(context, {message: "succeed"});
+                    player.set("coin",player.get("coin")+500);
+                    player.save({
+                        success: function (player) {
+                            succeed(context, {message: "succeed"});
+                        },
+                        error: function (error) {
+                            fail(context, error);
+                        }
+                    });
                 },
                 error: function (error) {
                     fail(context, error);

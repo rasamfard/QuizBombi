@@ -16,7 +16,15 @@ exports.handler = function (requestBody, context) {
             extraInfo.set("telegramAndVote", telegramAndVote + 2);
             extraInfo.save({
                 success: function (extraInfo) {
-                    succeed(context, {message: "succeed"});
+                    player.set("coin",player.get("coin")+500);
+                    player.save({
+                        success: function (player) {
+                            succeed(context, {message: "succeed"});
+                        },
+                        error: function (error) {
+                            fail(context, error);
+                        }
+                    });
                 },
                 error: function (error) {
                     fail(context, error);
