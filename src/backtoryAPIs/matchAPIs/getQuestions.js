@@ -8,7 +8,7 @@ exports.handler = function(requestBody, context) {
 		{
 			context.log("fields:"+fields);
 			getQuestionsIds(context,fields,0,6,function(questions,Ids){
-				succeed(context,{questions:questions,Ids:Ids});
+				succeed(context,{questions:questions,Ids:Ids,level:level});
 			},level);		
 		}
 		else
@@ -79,7 +79,7 @@ function getQuestionsIds(context,g_fields,g_i,g_type,callback,level)
 	var TQuestions = Backtory.Object.extend("TQuestions");
 	var qQuery=new Backtory.Query(TQuestions); 
 	qQuery.lessThanOrEqualTo("level",level);
-	var count=300;
+	var count=50;
 	qQuery.count({
 		success: function(max) {
 			count=Math.min(count,max);
