@@ -4,6 +4,7 @@ exports.handler = function (requestBody, context) {
     var count = requestBody.count;
     var securityContext = context.getSecurityContext();
     var player_id = securityContext.userId;
+    context.log("userId:"+player_id);
     var currDate = new Date();
     var coins=[10,50,100];
     var hearts=[0,0,1];
