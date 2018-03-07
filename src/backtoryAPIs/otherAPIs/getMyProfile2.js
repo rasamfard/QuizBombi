@@ -6,6 +6,7 @@ exports.handler = function (requestBody, context) {
     var TPlayers = Backtory.Object.extend("TPlayers");
     var mainQuery = new Backtory.Query(TPlayers);
     mainQuery.equalTo("userId", player_id);
+    mainQuery.include("extraInfo");
     mainQuery.include("currentMission");
     mainQuery.limit(1);
     mainQuery.find({
