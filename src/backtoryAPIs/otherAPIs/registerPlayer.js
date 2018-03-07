@@ -23,7 +23,7 @@ exports.handler = function (requestBody, context) {
             player.set("coin", 2500);
             player.set("level", 1);
             player.set("heart", 5);
-            player.set("ticket", 5);
+            player.set("ticket", 2);
             player.set("qCount", 5);
             player.set("matchCount", 0);
             player.set("xp", 0);
@@ -86,6 +86,7 @@ function createExtraInfo(context, mission, callback)
     extra_info.set("lastPackageId", 0);
     extra_info.set("lastPackageTime", "0");
     extra_info.set("usedHomesTF", 0);
+    extra_info.set("telegramAndVote", 0);
     extra_info.save({
         success: function (extra_info) {
             callback(extra_info);
