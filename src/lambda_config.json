@@ -53,6 +53,16 @@
     "handlerName": "backtoryAPIs/appAPIs/getActivePlayers.handler",
     "timeLimitInMilliSeconds": 3000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "getTelegramReward": {
+    "handlerName": "backtoryAPIs/otherAPIs/getTelegramReward.handler",
+    "timeLimitInMilliSeconds": 6000,
+    "authenticationMode": "AUTHENTICATED"
+  },
+   "getVoteReward": {
+    "handlerName": "backtoryAPIs/otherAPIs/getVoteReward.handler",
+    "timeLimitInMilliSeconds": 6000,
+    "authenticationMode": "AUTHENTICATED"
   }
   ,
    "getMyProfile2": {
