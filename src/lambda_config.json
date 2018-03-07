@@ -168,21 +168,6 @@
     "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   }, 
-  "storeQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/storeQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
-  }, 
-  "updateQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/updateQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
-  }, 
-  "deleteQuestion": {
-    "handlerName": "backtoryAPIs/qbhost/deleteQuestion.handler",
-    "timeLimitInMilliSeconds": 3000,
-    "authenticationMode": "PUBLIC"
-  }, 
   "storeTFQuestion": {
     "handlerName": "backtoryAPIs/qbhost/storeTFQuestion.handler",
     "timeLimitInMilliSeconds": 3000,
