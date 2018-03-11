@@ -91,6 +91,11 @@
     "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   },
+   "getQuestionsList": {
+    "handlerName": "backtoryAPIs/matchAPIs/getQuestionsList.handler",
+    "timeLimitInMilliSeconds": 7000,
+    "authenticationMode": "AUTHENTICATED"
+  },
    "gameEnded": {
     "handlerName": "backtoryAPIs/matchAPIs/gameEnded.handler",
     "timeLimitInMilliSeconds": 3000,
