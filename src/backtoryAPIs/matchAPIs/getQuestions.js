@@ -188,7 +188,7 @@ function getPlayersFields(context,ps,callback)
                         
                         if(ttype!=5)
                         {
-                            if(level>14)
+                            if(level>16)
                                 level=10;
                             else
                                 level=5;
