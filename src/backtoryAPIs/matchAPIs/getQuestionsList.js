@@ -3,6 +3,7 @@ var imagesURL = 'http://storage.backtory.com/quizbombi_images/';
 exports.handler = function (requestBody, context) {
     var Ids = requestBody.Ids;
     var level = requestBody.level;
+    context.log(Ids);
     getQuestions(context, Ids, level, 0, [], function (questions) {
         succeed(context, {questions: questions});
     });
