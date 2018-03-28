@@ -1,7 +1,7 @@
 var Backtory = require('backtory-sdk');
 
 exports.handler = function (requestBody, context) {
-    var idss = requestBody.idss;
+    var idss =  requestBody.idss;
     var level = requestBody.level;
     context.log(idss);
     context.log(JSON.stringify(idss));
