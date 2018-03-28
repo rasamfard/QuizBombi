@@ -1,10 +1,12 @@
 var Backtory = require('backtory-sdk');
+exports.handler = function(requestBody, context) {
 var coin=0;
 var video_heart= 0;
 var video_coin=0;
-exports.handler = function(requestBody, context) {
-	var securityContext = context.getSecurityContext();
-//types= 1:mini(6p,15MS) 2:mega(10p,30MS) 3:mega(5p,15MS) 4:mega(5p,15MS) 5:mega(4p,15MS) 6:mega(6p,-MS) 7:mega(6p,15MS)
+
+    var securityContext = context.getSecurityContext();
+
+    //types= 1:mini(6p,15MS) 2:mega(10p,30MS) 3:mega(5p,15MS) 4:mega(5p,15MS) 5:mega(4p,15MS) 6:mega(6p,-MS) 7:mega(6p,15MS)
 	var type= requestBody.type;
 	var rank= requestBody.rank;
 	var gameScore=requestBody.gameScore;
@@ -48,32 +50,32 @@ exports.handler = function(requestBody, context) {
 					if(type==1||type==7)
 					{
 						updateNormalRanks(securityContext.userId,score,function(){
-							succeed(context);
+							succeed(context,coin,video_heart,video_coin);
 						});
 					}
 					else if(type==6)
 					{
 						updateEndlessRanks(securityContext.userId,score,qCount,function(){
-							succeed(context);
+							succeed(context,coin,video_heart,video_coin);
 						});	
 					}
 					else
 					{
-						succeed(context);
+						succeed(context,coin,video_heart,video_coin);
 					}
 				},
 				error: function(error) {
 					fail(context,error);
 				}
 			});
-		});	
+		},coin,video_heart,video_coin);	
 
 	});
 	//types 1=5 players , 2=10 players 3= friendly  
 	
 	
 };
-function savePlayerRewards(context,player,callback)
+function savePlayerRewards(context,player,callback,coin,video_heart,video_coin)
 {
 	var TPlayerRewards = Backtory.Object.extend("TPlayerRewards");
 	var qQuery=new Backtory.Query(TPlayerRewards); 
@@ -274,7 +276,7 @@ function fail(context,errors)
 	context.log("error:"+JSON.stringify(error));
 	context.fail(error);
 }
-function succeed(context)
+function succeed(context,coin,video_heart,video_coin)
 {
     context.log("coin:"+coin);
     
