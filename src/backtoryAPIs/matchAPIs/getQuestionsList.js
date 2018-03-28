@@ -1,5 +1,5 @@
 var Backtory = require('backtory-sdk');
-var imagesURL = 'http://storage.backtory.com/quizbombi_images/';
+
 exports.handler = function (requestBody, context) {
     var Ids = requestBody.Ids;
     var level = requestBody.level;
@@ -11,6 +11,7 @@ exports.handler = function (requestBody, context) {
 
 function getQuestions(context, Ids, level, i, questions, callback)
 {
+    var imagesURL = 'http://storage.backtory.com/quizbombi_images/';
     var TQuestions = Backtory.Object.extend("TQuestions");
     var qQuery = new Backtory.Query(TQuestions);
     qQuery.lessThanOrEqualTo("level", level);
