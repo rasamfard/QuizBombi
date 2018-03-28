@@ -15,6 +15,7 @@ var video_coin=0;
 	var maxScores=[15,30,15,15,15,-1,15];
         context.log("rank:"+rank);
         context.log("type:"+type);
+        context.log("gameScore:"+gameScore);
 	//context.log("score:"+gameScore);
 	//context.log("userId:"+securityContext.userId);
 	var coins=[[30,10,5,2,2,2,2,2,2,2,2,2,2,2],[10,8,8,7,4,1,1,1,1,1,1,1,1,1,1],[30,10,5,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2],[30,20,10,5,5,5,5,5,5,5,5,5,5],[30,10,5,2,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2,2,2,2]];
