@@ -271,7 +271,7 @@ function missions(context,pl,t,r,gs,ans)
 				
 	}
 }
-function fail(context,errors)
+function fail(context,error)
 {
 	context.log("error:"+JSON.stringify(error));
 	context.fail(error);
