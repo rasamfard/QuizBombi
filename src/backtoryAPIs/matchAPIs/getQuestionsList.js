@@ -3,8 +3,9 @@ var Backtory = require('backtory-sdk');
 exports.handler = function (requestBody, context) {
     var idss = requestBody.idss;
     var level = requestBody.level;
-    context.log(JSON.stringify(Ids));
-    getQuestions(context, Ids, level, 0, [], function (questions) {
+    context.log(idss);
+    context.log(JSON.stringify(idss));
+    getQuestions(context, idss, level, 0, [], function (questions) {
         succeed(context, {questions: questions});
     });
 };
