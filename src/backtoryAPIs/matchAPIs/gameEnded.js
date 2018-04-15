@@ -12,14 +12,14 @@ var video_coin=0;
 	var gameScore=requestBody.gameScore;
 	var qCount=requestBody.qCount;
 	var answers= requestBody.answers;
-	var maxScores=[15,30,15,15,15,-1,15];
+	var maxScores=[15,30,15,15,15,-1,15,15];
         context.log("rank:"+rank);
         context.log("type:"+type);
         context.log("gameScore:"+gameScore);
 	//context.log("score:"+gameScore);
 	//context.log("userId:"+securityContext.userId);
-	var coins=[[30,10,5,2,2,2,2,2,2,2,2,2,2,2],[10,8,8,7,4,1,1,1,1,1,1,1,1,1,1],[30,10,5,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2],[30,20,10,5,5,5,5,5,5,5,5,5,5],[30,10,5,2,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2,2,2,2]];
-	var xps=[[5,4,3,2,2,2,2,2,2,2,2,2],[10,8,8,7,4,2,2,2,2,2,2,2,2,2,2],[5,4,3,3,3,3,3,3,3,3,3,3,3,3],[5,4,3,2,1,1,1,1,1,1,1,1],[5,4,3,2,2,2,2,2,2,2,2,2,2,2],[5,4,3,2,1,1,1,1,1,1,1,1,1,1,1,1],[5,4,3,2,1,1,1,1,1,1,1,1,1,1,1]];
+	var coins=[[30,10,5,2,2,2,2,2,2,2,2,2,2,2],[10,8,8,7,4,1,1,1,1,1,1,1,1,1,1],[30,10,5,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2],[30,20,10,5,5,5,5,5,5,5,5,5,5],[30,10,5,2,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2,2,2,2],[30,10,5,2,2,2,2,2,2,2,2,2,2,2]];
+	var xps=[[5,4,3,2,2,2,2,2,2,2,2,2],[5,4,3,2,2,2,2,2,2,2,2,2,2,2],[5,4,3,3,3,3,3,3,3,3,3,3,3,3],[5,4,3,2,1,1,1,1,1,1,1,1],[5,4,3,2,2,2,2,2,2,2,2,2,2,2],[5,4,3,2,1,1,1,1,1,1,1,1,1,1,1,1],[5,4,3,2,1,1,1,1,1,1,1,1,1,1,1],[5,4,3,2,1,1,1,1,1,1,1,1,1,1,1]];
 	var score=Math.min(gameScore,maxScores[type-1]);//scores[type-1][rank-1];
 	if(type==6)
 		score=gameScore;
@@ -30,7 +30,7 @@ var video_coin=0;
 	
 	findPlayer(context,securityContext.userId,function(player){
 	//	player.set("coin",player.get("coin")+coin);
-            if(player.get("heart")>3)
+            if(player.get("heart")>1)
                 video_heart=0;
 		savePlayerRewards(context,player,function(){
 			xp=xp+player.get("xp");
