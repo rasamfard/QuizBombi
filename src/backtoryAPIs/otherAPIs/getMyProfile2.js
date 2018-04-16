@@ -3,6 +3,7 @@ var Backtory = require('backtory-sdk');
 exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var player_id = securityContext.userId;//
+    context.log("player_id:"+player_id);
     var TPlayers = Backtory.Object.extend("TPlayers");
     var mainQuery = new Backtory.Query(TPlayers);
     mainQuery.equalTo("userId", player_id);
