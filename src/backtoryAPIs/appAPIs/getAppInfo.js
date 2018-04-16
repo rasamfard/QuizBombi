@@ -4,7 +4,7 @@ exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var currentVersion = requestBody.currentVersion;
     var botSpawnTime = 8;
-    var QCURL="";
+    var QCURL="http://quizbombi.ir";
     //battle 1
     var BattlesInfo = [];
     BattlesInfo[0] = {battleType: 1, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 20, 30, 40, 50, 60], battleStageTimes: [27, 59, 86, 118]};
