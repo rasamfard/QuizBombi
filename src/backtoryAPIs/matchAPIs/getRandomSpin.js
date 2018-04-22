@@ -24,9 +24,9 @@ exports.handler = function (requestBody, context) {
     //puch 2 ya 3     2
 
     var random_items = [3, 2, 0];
-    var random_coin_counts = [50, 150, 250];
-    var random_heart_counts = [1, 2, 3];
-    var random_ticket_counts = [1, 2, 4];
+    var random_coin_counts = [50, 75, 100];
+    var random_heart_counts = [1, 2, 1];
+    var random_ticket_counts = [1, 2, 1];
 
     var types = [0, 1, 4, 2, 2, 3, 3, random_items[Math.floor(Math.random() * random_items.length)]];
     types=shuffleArray(types);
