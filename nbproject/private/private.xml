@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/appAPIs/getActivePlayers.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/appAPIs/getAppInfo.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/getMyProfile2.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFReward.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/gameEnded.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFQuestions.js</file>
         </group>
     </open-files>
 </project-private>
