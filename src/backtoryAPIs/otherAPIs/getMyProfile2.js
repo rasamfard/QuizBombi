@@ -2,7 +2,7 @@ var Backtory = require('backtory-sdk');
 
 exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
-    context.log("requestBody:"+requestBody);
+    context.log("requestBody:"+JSON.stringify(requestBody));
     var player_id = securityContext.userId;//
     context.log("player_id:"+player_id);
     var TPlayers = Backtory.Object.extend("TPlayers");
@@ -26,7 +26,7 @@ exports.handler = function (requestBody, context) {
                     }
                     pp.set("telegramAndVote",pp.get("extraInfo").get("telegramAndVote"));
                     pp.get("currentMission").set("currentMissionStep", pp.get("currentMissionStep"));
-                     context.log("player:"+JSON.stringify(pp));
+                   //  context.log("player:"+JSON.stringify(pp));
                     context.succeed(pp);
                     // 				var leaderBoard = new Backtory.LeaderBoard("5992e583e4b0dce69e446541");
                     // 				leaderBoard.getUserRank(player_id, {
