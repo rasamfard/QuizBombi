@@ -63,6 +63,11 @@
     "handlerName": "backtoryAPIs/otherAPIs/getVoteReward.handler",
     "timeLimitInMilliSeconds": 6000,
     "authenticationMode": "AUTHENTICATED"
+  },
+   "getFreeCoins": {
+    "handlerName": "backtoryAPIs/otherAPIs/getFreeCoins.handler",
+    "timeLimitInMilliSeconds": 6000,
+    "authenticationMode": "AUTHENTICATED"
   }
   ,
    "getMyProfile2": {
