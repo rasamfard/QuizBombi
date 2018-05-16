@@ -45,10 +45,8 @@ exports.handler = function (requestBody, context) {
                     });
                 });
             }
-
         });
     });
-
 };
 function buyItems(context, player, pitems, i, callback)
 {
