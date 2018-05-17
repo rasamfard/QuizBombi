@@ -29,6 +29,10 @@ exports.handler = function (requestBody, context) {
                         player.save({
                             success: function (player) {
                                 parentPlayer.set("coin", parentPlayer.get("coin") + 500);
+                                if(parentPlayer.get("inviteCount")!=null)
+                                    parentPlayer.set("inviteCount", parentPlayer.get("inviteCount") + 1);
+                                else
+                                    parentPlayer.set("inviteCount", 1);
                                 parentPlayer.save({
                                     success: function (parentPlayer) {
                                         succeed(context, {coins: coins});
