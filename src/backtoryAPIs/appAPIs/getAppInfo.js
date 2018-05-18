@@ -20,6 +20,7 @@ exports.handler = function (requestBody, context) {
     var telegramReward=500;
     var voteReward=500;
     var instaReward=500;
+    var inviteReward=500;
 
     var TAppInfo = Backtory.Object.extend("TAppInfo");
     var mainQuery = new Backtory.Query(TAppInfo);
@@ -43,14 +44,14 @@ exports.handler = function (requestBody, context) {
             {
                 var last = list[list.length - 1];
 
-                succeed(context, {versionCode: last.get("codeVersion"), apkURL: last.get("apkURL"), changes: changes, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,QCURL:QCURL});
+                succeed(context, {versionCode: last.get("codeVersion"), apkURL: last.get("apkURL"), changes: changes, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,inviteReward:inviteReward,QCURL:QCURL});
             } else
-                succeed(context, {versionCode: currentVersion, apkURL: "https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa", changes: changes, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,QCURL:QCURL});
+                succeed(context, {versionCode: currentVersion, apkURL: "https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa", changes: changes, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,inviteReward:inviteReward,QCURL:QCURL});
 // 				fail(context,"this is the last version");
         },
         error: function (error) {
             var changes2 = [];
-            succeed(context, {versionCode: currentVersion, apkURL: "https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa", changes: changes2, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,QCURL:QCURL});
+            succeed(context, {versionCode: currentVersion, apkURL: "https://cafebazaar.ir/app/ir.magma.quizbombi/?l=fa", changes: changes2, minPlayers: minPlayers, newHeartTime: newHeartTime, battleRewards_mini: battleRewards_mini, battleRewards_mega: battleRewards_mega, battleRewards_friend: battleRewards_friend, BattlesInfo: BattlesInfo, botSpawnTime: botSpawnTime,maxHearts:maxHearts,telegramReward:telegramReward,voteReward:voteReward,instaReward:instaReward,inviteReward:inviteReward,QCURL:QCURL});
             //fail(context,error);
         }
     });
