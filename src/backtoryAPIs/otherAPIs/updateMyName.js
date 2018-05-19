@@ -18,11 +18,13 @@ exports.handler = function(requestBody, context) {
 					context.succeed({message:"successful"});
 				},
 				error: function(error) {
+                                        context.log("player "+player_id+" save error");
 					context.fail(error);
 				}
 			});
         },
         error: function(error) {
+            context.log("player "+player_id+" find error");
             context.fail(error);
         }
     });
