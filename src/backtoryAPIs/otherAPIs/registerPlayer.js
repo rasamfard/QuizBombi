@@ -78,7 +78,7 @@ function createScreenItems(context, player, callback)
         },
         error: function (error) {
             context.log("err3");
-            context.fail(error);
+            fail(context,error);
         }
     });
 }
