@@ -3,7 +3,9 @@ var Backtory = require('backtory-sdk');
 exports.handler = function(requestBody, context) {
 	var TPlayers = Backtory.Object.extend("TPlayers");
 	var qQuery=new Backtory.Query(TPlayers);
-	qQuery.equalTo("uid",requestBody.uid);
+        var uid=requestBody.uid;
+        uid=uid.toLowerCase();
+	qQuery.equalTo("uid",uid);
 	qQuery.limit(1);
 	qQuery.find({
 		success: function(players) {
