@@ -4,7 +4,9 @@ exports.handler = function(requestBody, context) {
 	var TPlayers = Backtory.Object.extend("TPlayers");
 	var qQuery=new Backtory.Query(TPlayers);
         var uid=requestBody.uid;
+        context.log("uid:"+uid);
         uid=uid.toLowerCase();
+        context.log("after lowercase uid:"+uid);
 	qQuery.equalTo("uid",uid);
 	qQuery.limit(1);
 	qQuery.find({
