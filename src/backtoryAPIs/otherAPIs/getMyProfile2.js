@@ -14,7 +14,7 @@ exports.handler = function (requestBody, context) {
     mainQuery.find({
         success: function (list2) {
             var pp = list2[0];
-           // context.log("player:"+JSON.stringify(pp));
+            context.log("player:"+JSON.stringify(pp));
             updateEnergy(context, pp, function () {
            //     context.log("updateEnergy");
                 checkInfinitEnergy(context, pp, function () {
