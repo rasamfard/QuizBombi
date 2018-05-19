@@ -38,12 +38,14 @@ function findPlayer(context, userId, callback)
                 callback(player);
             else
             {
-                context.log("retry");
+                context.log("retry to find player");
                 findPlayer(context, userId, callback);
             }
         },
         error: function (error) {
-            fail(context, error);
+            context.log("retry to find player in error condition "+ JSON.stringify(error));
+            findPlayer(context, userId, callback);
+            // fail(context, error);
         }
     });
 }
@@ -74,15 +76,20 @@ function updateEnergy(context, pp, callback)
         }
     }
     pp.set("heart", newHeart);
-    pp.save({
+    savePlayer(context, pp, callback);
+}
+function savePlayer(context, player, callback)
+{
+    player.save({
         success: function (history) {
             callback();
         },
         error: function (error) {
-            fail(context, error);
+            context.log("retry to save player data with error "+ JSON.stringify(error));
+            savePlayer(context, player, callback);
+            //fail(context, error);
         }
     });
-
 }
 function getShopItem(context, itemId, callback)
 {
@@ -94,32 +101,43 @@ function getShopItem(context, itemId, callback)
             if (list.length > 0)
                 callback(list[0]);
             else
-                fail(context, 'cannot find item');
+            {
+                context.log("cannot find item");
+                callback(null);
+            }
 
         },
         error: function (error) {
-            fail(context, error);
+            context.log("finding shopItem failed with error " + JSON.stringify(error));
+            callback(null);
+            //fail(context, error);
         }
     });
 }
 function checkInfinitEnergy(context, pp, callback)
 {
     getShopItem(context, "59671a673a42bc0001eef4ff", function (item) {
-        var TPurchases = Backtory.Object.extend("TPurchases");
-        var query = new Backtory.Query(TPurchases);
-        query.equalTo("userId", pp.get("userId"));
-        query.equalTo("item", item);
-        query.find({
-            success: function (list) {
-                if (list.length > 0)
-                    pp.set("heart", -1);
-                callback();
-            },
-            error: function (error) {
-                callback();
-                //  fail(context, error);
-            }
-        });
+        if (item == null)
+        {
+            callback();
+        } else
+        {
+            var TPurchases = Backtory.Object.extend("TPurchases");
+            var query = new Backtory.Query(TPurchases);
+            query.equalTo("userId", pp.get("userId"));
+            query.equalTo("item", item);
+            query.find({
+                success: function (list) {
+                    if (list.length > 0)
+                        pp.set("heart", -1);
+                    callback();
+                },
+                error: function (error) {
+                    callback();
+                    //  fail(context, error);
+                }
+            });
+        }
     });
 }
 
