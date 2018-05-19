@@ -3,7 +3,7 @@ exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var userId = securityContext.userId;
     //types: 0=telegram 1=vote 2=instagram
-    var type= securityContext.type;
+    var type= requestBody.type;
     context.log("type:"+type);
     var values=[[1,1,3,3,5,5,7,7],[2,3,3,3,6,7,6,7],[4,5,6,7,4,5,6,7]];
     var rewards=[100,100,100];

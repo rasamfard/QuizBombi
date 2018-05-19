@@ -10,6 +10,8 @@
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/getTelegramReward.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/getMyProfile2.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFReward.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/collectMissionReward.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/joinToMatch.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/lambda_config.json</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getTFQuestions.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/useEnergy.js</file>
@@ -19,8 +21,9 @@
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/registerPlayer.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/shopAPIs/buyOneItem.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/getPlayerRewards.js</file>
-            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/setInviteCode.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/otherAPIs/updateMyName.js</file>
             <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/matchAPIs/gameEnded.js</file>
+            <file>file:/D:/QuizBombi/Git/QuizBombiGit/src/backtoryAPIs/rankAPIs/getTopRankings.js</file>
         </group>
     </open-files>
 </project-private>
