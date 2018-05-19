@@ -133,6 +133,6 @@ function fail(context, error)
 }
 function succeed(context, result)
 {
-    context.log("result:" + JSON.stringify(result));
+   // context.log("result:" + JSON.stringify(result));
     context.succeed(result);
 }
