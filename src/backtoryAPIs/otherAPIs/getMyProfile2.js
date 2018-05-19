@@ -10,9 +10,10 @@ exports.handler = function (requestBody, context) {
     mainQuery.equalTo("userId", player_id);
     mainQuery.include("extraInfo");
     mainQuery.include("currentMission");
-    mainQuery.limit(1);
+    mainQuery.limit(100);
     mainQuery.find({
         success: function (list2) {
+            context.log("list2.length"+list2.length);
             var pp = list2[0];
             context.log("player:"+JSON.stringify(pp));
             updateEnergy(context, pp, function () {
