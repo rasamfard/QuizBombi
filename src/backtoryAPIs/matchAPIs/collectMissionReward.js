@@ -34,6 +34,8 @@ function getMission(context,code,callback)
 {
 	var TMissions = Backtory.Object.extend("TMissions");
 	var qQuery=new Backtory.Query(TMissions); 
+        if(code>17)
+            code=1;
 	qQuery.equalTo("code",code);
 	qQuery.find({
 		success: function(missions) {
