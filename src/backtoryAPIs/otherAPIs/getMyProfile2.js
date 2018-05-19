@@ -76,12 +76,12 @@ function updateEnergy(context, pp, callback)
     var hours = Math.floor(Math.abs(curdate - lastdate) / 3600000);  //curdate-lastdate in miliseconds
     var myStartDate = new Date(lastdate.getTime() + (hours * 3600000));
     var newHeart = pp.get("heart");
-    if (pp.get("heart") < 5)
+    if (pp.get("heart") < 3)
     {
         newHeart = pp.get("heart") + hours;
-        if (newHeart >= 5)
+        if (newHeart >= 3)
         {
-            newHeart = 5;
+            newHeart = 3;
             var date = new Date();
             pp.set("heartLastTime", date);
         } else

@@ -4,7 +4,7 @@ exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var currentVersion = requestBody.currentVersion;
     var botSpawnTime = 8;
-    var QCURL="";
+    var QCURL="http://addyouridea.ir/bombi";
     //battle 1
     var BattlesInfo = [];
     BattlesInfo[0] = {battleType: 1, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 20, 30, 40, 50, 60], battleStageTimes: [27, 59, 86, 118]};
@@ -15,7 +15,7 @@ exports.handler = function (requestBody, context) {
     BattlesInfo[5] = {battleType: 6, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 20, 30, 40, 50, 60], battleStageTimes: [32, 59, 86, 113, 140, 167, 194, 221, 248, 275, 302, 329, 356, 383, 410, 437, 464, 491, 518]};
     BattlesInfo[6] = {battleType: 7, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 30, 40, 50, 60], battleStageTimes: [27, 59, 86, 118]};
     
-    var maxHearts=4; 
+    var maxHearts=3; 
     
     var telegramReward=500;
     var voteReward=500;

@@ -5,11 +5,13 @@ exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var userId = securityContext.userId;
     var uid = requestBody.uid;
+    uid=uid.toLowerCase();
 
     var coins=1000;
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var invitedUID = extraInfo.get("invitedUID");
+        invitedUID=invitedUID.toLowerCase();
         if (invitedUID!=null&&invitedUID.length > 0)
         {
             succeed(context, {coins: -1});

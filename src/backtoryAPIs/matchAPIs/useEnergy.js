@@ -64,7 +64,7 @@ function decreaseFunc(pr, type)
         if (heart < 0)
             heart = 0;
         pr.set("heart", heart);
-        if (pr.get("heart") >= 4 || pr.get("heartLastTime") == null)
+        if (pr.get("heart") >= 3 || pr.get("heartLastTime") == null)
         {
             var date = new Date();
             pr.set("heartLastTime", date);
