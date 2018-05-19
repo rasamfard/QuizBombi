@@ -4,13 +4,15 @@ exports.handler = function (requestBody, context) {
     var userId = securityContext.userId;
     //types: 0=telegram 1=vote 2=instagram
     var type= securityContext.type;
+    context.log("type:"+type);
     var values=[[1,1,3,3,5,5,7,7],[2,3,3,3,6,7,6,7],[4,5,6,7,4,5,6,7]];
     var rewards=[100,100,100];
+    
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
-        var telegramAndVote = extraInfo.get("telegramAndVote");
-        if (telegramAndVote == null)
-            telegramAndVote = 0;
+        var telegramAndVote=0;
+        if(extraInfo.get("telegramAndVote")!=null)
+            telegramAndVote = extraInfo.get("telegramAndVote");
         //1: telegram
         //2: vote
         //3: vote and telegram
@@ -18,6 +20,7 @@ exports.handler = function (requestBody, context) {
         //5: instagram and telegram
         //6: instagram and vote
         //7: instagram and vote and telegram
+        context.log("telegramAndVote:"+telegramAndVote);
         if (telegramAndVote != values[type][telegramAndVote] )
         {
             extraInfo.set("telegramAndVote", values[type][telegramAndVote]);
