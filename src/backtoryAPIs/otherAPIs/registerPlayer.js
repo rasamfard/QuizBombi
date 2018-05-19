@@ -45,7 +45,8 @@ exports.handler = function (requestBody, context) {
 
                             },
                             error: function (error) {
-                                context.fail(error);
+                                context.log("err1");
+                                fail(context,error);
                             }
                         });
                     });
@@ -54,6 +55,7 @@ exports.handler = function (requestBody, context) {
             });
         },
         error: function (error) {
+            context.log("err2");
             context.fail(error);
         }
     });
@@ -75,6 +77,7 @@ function createScreenItems(context, player, callback)
             callback();
         },
         error: function (error) {
+            context.log("err3");
             context.fail(error);
         }
     });
@@ -92,6 +95,7 @@ function createExtraInfo(context, mission, callback)
             callback(extra_info);
         },
         error: function (error) {
+            context.log("err4");
             context.fail(error);
         }
     });
@@ -110,6 +114,7 @@ function generateUID(context, callback)
                 callback(uid);
         },
         error: function (error) {
+            context.log("err5");
             fail(context, error);
         }
     });
@@ -128,6 +133,7 @@ function getMission(context, code, callback)
                 fail(context, "not found mission with code:" + code);
         },
         error: function (error) {
+            context.log("err6");
             fail(context, error);
         }
     });
