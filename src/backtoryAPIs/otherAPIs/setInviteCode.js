@@ -11,7 +11,9 @@ exports.handler = function (requestBody, context) {
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var invitedUID = extraInfo.get("invitedUID");
-        invitedUID=invitedUID.toLowerCase();
+        if(invitedUID!=null)
+         invitedUID=invitedUID.toLowerCase();
+        
         if (invitedUID!=null&&invitedUID.length > 0)
         {
             succeed(context, {coins: -1});
