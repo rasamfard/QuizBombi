@@ -2,68 +2,51 @@ var Backtory = require('backtory-sdk');
 
 exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
-    context.log("requestBody:"+JSON.stringify(requestBody));
+    context.log("requestBody:" + JSON.stringify(requestBody));
     var player_id = securityContext.userId;//
-    context.log("player_id:"+player_id);
+    context.log("player_id:" + player_id);
+    findPlayer(context, player_id, function (player) {
+        context.log("player:" + JSON.stringify(player));
+        updateEnergy(context, player, function () {
+            checkInfinitEnergy(context, player, function () {
+                if (player.get("heartLastTime") != null)
+                {
+                    var testDate = new Date(player.get("heartLastTime")).toUTCString();
+                    player.set("heartLastTime", testDate);
+                }
+                player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
+                player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
+                context.succeed(player);
+            });
+        });
+    });
+
+};
+function findPlayer(context, userId, callback)
+{
     var TPlayers = Backtory.Object.extend("TPlayers");
     var mainQuery = new Backtory.Query(TPlayers);
-    mainQuery.equalTo("userId", player_id);
+    mainQuery.equalTo("userId", userId);
     mainQuery.include("extraInfo");
     mainQuery.include("currentMission");
     mainQuery.limit(100);
     mainQuery.find({
-        success: function (list2) {
-            context.log("list2.length"+list2.length);
-            var pp = list2[0];
-            context.log("player:"+JSON.stringify(pp));
-            updateEnergy(context, pp, function () {
-           //     context.log("updateEnergy");
-                checkInfinitEnergy(context, pp, function () {
-             //       context.log(JSON.stringify(pp));
-                    if (pp.get("heartLastTime") != null)
-                    {
-                        var testDate = new Date(pp.get("heartLastTime")).toUTCString();
-                        pp.set("heartLastTime", testDate);
-                    }
-                    pp.set("telegramAndVote",pp.get("extraInfo").get("telegramAndVote"));
-                    pp.get("currentMission").set("currentMissionStep", pp.get("currentMissionStep"));
-                   //  context.log("player:"+JSON.stringify(pp));
-                    context.succeed(pp);
-                    // 				var leaderBoard = new Backtory.LeaderBoard("5992e583e4b0dce69e446541");
-                    // 				leaderBoard.getUserRank(player_id, {
-                    // 					success: function(rank, scores) {
-                    // 						pp.set("rank",rank);
-                    // 						context.log(pp);
-                    // 						context.succeed(pp);
-                    // 					},
-
-                    // 					error: function(error) {
-                    // 						var event = new Backtory.Event("UpdateRank");
-                    // 						event.add("score",0);
-                    // 						event.add("score2", Math.ceil(Math.random()*(1000000)));
-                    // 						event.sendFromUser(player_id, {
-                    // 							success: function() {
-                    // 								pp.set("rank",0);
-                    // 								context.succeed(pp);
-                    // 							},
-
-                    // 							error: function(error) {
-                    // 								context.log(error);
-                    // 								context.fail(error);
-                    // 							}
-                    // 						});
-
-                    // 					}
-                    // 				});
-                });
-            });
-
+        success: function (players) {
+            context.log("players.length" + players.length);
+            var player = players[0];
+            if (player != null)
+                callback(player);
+            else
+            {
+                context.log("retry");
+                findPlayer(context, userId, callback);
+            }
         },
         error: function (error) {
-            fail(context,error);
+            fail(context, error);
         }
     });
-};
+}
 function updateEnergy(context, pp, callback)
 {
     if (pp.get("heartLastTime") == null)
@@ -134,7 +117,7 @@ function checkInfinitEnergy(context, pp, callback)
             },
             error: function (error) {
                 callback();
-              //  fail(context, error);
+                //  fail(context, error);
             }
         });
     });
