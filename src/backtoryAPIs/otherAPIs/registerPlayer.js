@@ -12,7 +12,11 @@ exports.handler = function (requestBody, context) {
         "phoneNumber": ""
     };
 
-    Backtory.Users.signUp(userInfo1, {
+    registerPlayerFunc(context, userInfo1);
+};
+function registerPlayerFunc(context, userInfos)
+{
+    Backtory.Users.signUp(userInfos, {
         success: function (userInfo) {
             context.log(userInfo);
             var TPlayers = Backtory.Object.extend("TPlayers");
@@ -45,11 +49,12 @@ exports.handler = function (requestBody, context) {
             });
         },
         error: function (error) {
-            context.log("err2");
-            context.fail(error);
+            context.log("retry to register with error "+ JSON.stringify(error));
+            registerPlayerFunc(context, userInfos);
+            //fail(context,error);
         }
     });
-};
+}
 function savePlayer(context, player)
 {
     player.save({
@@ -60,7 +65,7 @@ function savePlayer(context, player)
 
         },
         error: function (error) {
-            context.log("retry to save Player data");
+            context.log("retry to save Player data with error "+ JSON.stringify(error));
             savePlayer(context, player);
           //  fail(context, error);
         }
@@ -83,7 +88,7 @@ function createScreenItems(context, player, callback)
             callback();
         },
         error: function (error) {
-            context.log("retry to createScreenItems");
+            context.log("retry to createScreenItems with error " + JSON.stringify(error));
             createScreenItems(context, player, callback);
             //fail(context,error);
         }
@@ -102,7 +107,7 @@ function createExtraInfo(context, mission, callback)
             callback(extra_info);
         },
         error: function (error) {
-            context.log("retry createExtraInfo");
+            context.log("retry createExtraInfo with error "+ JSON.stringify(error));
             createExtraInfo(context, mission, callback);
             //context.fail(error);
         }
@@ -123,7 +128,7 @@ function generateUID(context, callback)
                 callback(uid);
         },
         error: function (error) {
-            context.log("retry generateUID");
+            context.log("retry generateUID with error "+ JSON.stringify(error));
             generateUID(context, callback);
 
             // fail(context, error);
@@ -147,7 +152,7 @@ function getMission(context, code, callback)
             }
         },
         error: function (error) {
-            context.log("retry getMission");
+            context.log("retry getMission with error " + JSON.stringify(error));
             getMission(context, code, callback);
             // fail(context, error);
         }
