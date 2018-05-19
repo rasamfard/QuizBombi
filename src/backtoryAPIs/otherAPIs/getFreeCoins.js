@@ -5,7 +5,7 @@ exports.handler = function (requestBody, context) {
     //types: 0=telegram 1=vote 2=instagram
     var type= securityContext.type;
     var values=[[1,1,3,3,5,5,7,7],[2,3,3,3,6,7,6,7],[4,5,6,7,4,5,6,7]];
-    var rewards=[500,500,500];
+    var rewards=[100,100,100];
     findPlayer(context, userId, function (player) {
         var extraInfo = player.get("extraInfo");
         var telegramAndVote = extraInfo.get("telegramAndVote");

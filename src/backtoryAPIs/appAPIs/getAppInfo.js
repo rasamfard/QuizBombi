@@ -17,9 +17,9 @@ exports.handler = function (requestBody, context) {
     
     var maxHearts=3; 
     
-    var telegramReward=500;
-    var voteReward=500;
-    var instaReward=500;
+    var telegramReward=100;
+    var voteReward=100;
+    var instaReward=100;
     var inviteReward=500;
 
     var TAppInfo = Backtory.Object.extend("TAppInfo");
