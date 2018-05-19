@@ -106,6 +106,7 @@ function generateUID(context, callback)
     var TPlayers = Backtory.Object.extend("TPlayers");
     var _qQuery = new Backtory.Query(TPlayers);
     _qQuery.equalTo("uid", uid);
+    _qQuery.limit(1);
     _qQuery.count({
         success: function (max) {
             if (max > 0)
