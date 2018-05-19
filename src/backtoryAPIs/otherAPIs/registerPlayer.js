@@ -13,9 +13,9 @@ exports.handler = function (requestBody, context) {
         "phoneNumber": ""
     };
 
-    registerPlayerFunc(context, userInfo1);
+    registerPlayerFunc(context, userInfo1,requestBody.username);
 };
-function registerPlayerFunc(context, userInfos)
+function registerPlayerFunc(context, userInfos,username)
 {
     Backtory.Users.signUp(userInfos, {
         success: function (userInfo) {
@@ -50,9 +50,9 @@ function registerPlayerFunc(context, userInfos)
             });
         },
         error: function (error) {
-            context.log("retry to register with error "+ JSON.stringify(error));
-            registerPlayerFunc(context, userInfos);
-            //fail(context,error);
+            context.log("retry to register with error "+ JSON.stringify(error) + " username:"+username);
+            //registerPlayerFunc(context, userInfos);
+            fail(context,error);
         }
     });
 }
