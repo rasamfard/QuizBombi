@@ -51,8 +51,8 @@ function registerPlayerFunc(context, userInfos,username)
         },
         error: function (error) {
             context.log("retry to register with error "+ JSON.stringify(error) + " username:"+username);
-            //registerPlayerFunc(context, userInfos);
-            fail(context,error);
+            registerPlayerFunc(context, userInfos);
+            //fail(context,error);
         }
     });
 }
