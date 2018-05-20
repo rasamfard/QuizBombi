@@ -3,7 +3,7 @@ var Backtory = require('backtory-sdk');
 exports.handler = function (requestBody, context) {
     var securityContext = context.getSecurityContext();
     var uid = ("00000" + ((Math.random() * Math.pow(36, 5)) | 0).toString(36)).slice(-5);
-    var emailName=requestBody.username+uid+"@quizbombi.ir";
+    var emailName = requestBody.username + uid + "@quizbombi.ir";
     var userInfo1 = {
         "firstName": "",
         "lastName": "",
@@ -13,9 +13,9 @@ exports.handler = function (requestBody, context) {
         "phoneNumber": ""
     };
 
-    registerPlayerFunc(context, userInfo1,requestBody.username);
+    registerPlayerFunc(context, userInfo1, requestBody.username);
 };
-function registerPlayerFunc(context, userInfos,username)
+function registerPlayerFunc(context, userInfos, username)
 {
     Backtory.Users.signUp(userInfos, {
         success: function (userInfo) {
@@ -50,8 +50,13 @@ function registerPlayerFunc(context, userInfos,username)
             });
         },
         error: function (error) {
-            context.log("retry to register with error "+ JSON.stringify(error) + " username:"+username);
-            registerPlayerFunc(context, userInfos,username);
+            if (error.responseCode == 409)
+                context.succeed({});
+            else
+            {
+                context.log("retry to register with error " + JSON.stringify(error) + " username:" + username);
+                registerPlayerFunc(context, userInfos, username);
+            }
             //fail(context,error);
         }
     });
@@ -66,9 +71,9 @@ function savePlayer(context, player)
 
         },
         error: function (error) {
-            context.log("retry to save Player data with error "+ JSON.stringify(error));
+            context.log("retry to save Player data with error " + JSON.stringify(error));
             savePlayer(context, player);
-          //  fail(context, error);
+            //  fail(context, error);
         }
     });
 }
@@ -108,7 +113,7 @@ function createExtraInfo(context, mission, callback)
             callback(extra_info);
         },
         error: function (error) {
-            context.log("retry createExtraInfo with error "+ JSON.stringify(error));
+            context.log("retry createExtraInfo with error " + JSON.stringify(error));
             createExtraInfo(context, mission, callback);
             //context.fail(error);
         }
@@ -129,7 +134,7 @@ function generateUID(context, callback)
                 callback(uid);
         },
         error: function (error) {
-            context.log("retry generateUID with error "+ JSON.stringify(error));
+            context.log("retry generateUID with error " + JSON.stringify(error));
             generateUID(context, callback);
 
             // fail(context, error);
