@@ -77,13 +77,19 @@ exports.handler = function (requestBody, context) {
                     });
                 } else
                 {
-                    fail(context,'time not reached');
+                    context.log("time not reached");
+                    delayLoop();
+                    //fail(context,'time not reached');
                 }
             });
         });
     });
 
 };
+function delayLoop()
+{
+    delayLoop();
+}
 function getShopItem(context, itemId, callback)
 {
     var TShopItems = Backtory.Object.extend("TShopItems");
