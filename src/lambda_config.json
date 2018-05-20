@@ -148,7 +148,7 @@
   },
    "getTFQuestions": {
     "handlerName": "backtoryAPIs/matchAPIs/getTFQuestions.handler",
-    "timeLimitInMilliSeconds": 3000,
+    "timeLimitInMilliSeconds": 5000,
     "authenticationMode": "AUTHENTICATED"
   },
    "useEnergy": {
