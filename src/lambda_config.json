@@ -6,7 +6,7 @@
   },
   "registerPlayer": {
     "handlerName": "backtoryAPIs/otherAPIs/registerPlayer.handler",
-    "timeLimitInMilliSeconds": 3000,
+    "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "PUBLIC"
   },
   "updateMyAvatar": {
