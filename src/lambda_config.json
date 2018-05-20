@@ -72,7 +72,7 @@
   ,
    "getMyProfile2": {
     "handlerName": "backtoryAPIs/otherAPIs/getMyProfile2.handler",
-    "timeLimitInMilliSeconds": 3000,
+    "timeLimitInMilliSeconds": 7000,
     "authenticationMode": "AUTHENTICATED"
   },
    "setFavoriteField2": {
