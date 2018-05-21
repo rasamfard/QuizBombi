@@ -87,6 +87,7 @@ function findbots(context, qCount, playerId, callback)
 
     var TPlayers = Backtory.Object.extend("TPlayers");
     var countQuery = new Backtory.Query(TPlayers);
+        countQuery.exists("userId");
     countQuery.notEqualTo("userId", playerId);
     countQuery.count({
         success: function (max) {
