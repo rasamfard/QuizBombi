@@ -1,6 +1,7 @@
 var Backtory = require('backtory-sdk');
 
 exports.handler = function (requestBody, context) {
+    
     var securityContext = context.getSecurityContext();
     var uid = ("00000" + ((Math.random() * Math.pow(36, 5)) | 0).toString(36)).slice(-5);
     var emailName = requestBody.username + uid + "@quizbombi.ir";
@@ -12,6 +13,7 @@ exports.handler = function (requestBody, context) {
         "email": emailName,
         "phoneNumber": ""
     };
+    context.log("input userInfo:"+userInfo1);
 
     registerPlayerFunc(context, userInfo1, requestBody.username);
 };
