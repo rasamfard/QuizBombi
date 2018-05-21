@@ -13,7 +13,7 @@ exports.handler = function (requestBody, context) {
         "email": emailName,
         "phoneNumber": ""
     };
-    context.log("input userInfo:"+userInfo1);
+    context.log("input userInfo:"+JSON.stringify(userInfo1));
 
     registerPlayerFunc(context, userInfo1, requestBody.username);
 };
