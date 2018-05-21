@@ -92,6 +92,8 @@ function findbots(context, qCount, playerId, callback)
     countQuery.count({
         success: function (max) {
             var qQuery = new Backtory.Query(TPlayers);
+                    qQuery.exists("userId");
+
             qQuery.notEqualTo("userId", playerId);
             var skipIndex = Math.floor(Math.random() * max);
             var count = Math.ceil((Math.random() + 0.01) * (1.9));
