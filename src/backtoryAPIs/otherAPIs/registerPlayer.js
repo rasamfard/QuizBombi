@@ -69,8 +69,8 @@ function registerPlayerFunc(context, userInfos, username)
 function savePlayer(context, player)
 {
     player.save({
-        success: function (player) {
-            createScreenItems(context, player, function () {
+        success: function (player2) {
+            createScreenItems(context, player2, function () {
                 context.succeed({});
             });
 

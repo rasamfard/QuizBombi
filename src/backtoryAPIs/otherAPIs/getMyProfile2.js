@@ -180,8 +180,8 @@ function registerPlayerFunc(context, userId,callback)
 function savePlayerRegister(context, player,callback)
 {
     player.save({
-        success: function (player) {
-            createScreenItems(context, player, function () {
+        success: function (player2) {
+            createScreenItems(context, player2, function () {
                 callback();
             });
 
