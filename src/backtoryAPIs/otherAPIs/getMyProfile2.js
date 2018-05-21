@@ -151,7 +151,7 @@ function registerPlayerFunc(context, userId,callback)
             var TPlayers = Backtory.Object.extend("TPlayers");
             var player = new TPlayers();
             player.set("name", "user_" + userId.slice(21, 24));
-            player.set("userId", userId.userId);
+            player.set("userId", userId);
             player.set("avatar", ["1", "1", "1"]);
             player.set("coin", 500);
             player.set("level", 1);
