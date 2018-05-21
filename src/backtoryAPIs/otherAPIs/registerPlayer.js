@@ -133,9 +133,9 @@ function generateUID(context, callback)
     _qQuery.limit(1);
     _qQuery.count({
         success: function (max) {
-            if (max > 0)
-                generateUID(context, callback);
-            else
+      //      if (max > 0)
+    //            generateUID(context, callback);
+        //    else
                 callback(uid);
         },
         error: function (error) {
