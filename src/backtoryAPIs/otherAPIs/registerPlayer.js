@@ -84,18 +84,25 @@ function savePlayer(context, player)
 }
 function createScreenItems(context, player, callback)
 {
+    context.log("line 87");
     var TScreenItems = Backtory.Object.extend("TScreenItems");
     var screen = new TScreenItems();
+    context.log("line 90");
     screen.set("player", player);
+    context.log("line 91");
     var items = [];
     var itemIds = ["5a5b5d97e7e9dc0001a27184", "5a5b5d99149ec00001b1633d", "5a5b6138e7e9dc0001a29ba7", "5a5b6138e7e9dc0001a29ba7", "5a5b60923d60fd0001a1c9d9", "5a5b60923d60fd0001a1c9d9", "5a5b5d98e7e9dc0001a27186"];
     var positions = [13, 14, 1, 10, 2, 9, 16];
     var date = new Date();
+    context.log("line 97");
     for (var i = 0; i < itemIds.length; i++)
         items[items.length] = {itemId: itemIds[i], pose: positions[i], addTime: date};
+    context.log("line 100");
     screen.set("items", items);
+    context.log("line 102");
     screen.save({
         success: function (screen) {
+            context.log("line 105");
             callback();
         },
         error: function (error) {
@@ -107,14 +114,17 @@ function createScreenItems(context, player, callback)
 }
 function createExtraInfo(context, mission, callback)
 {
+    context.log("line 117");
     var TExtraInfo = Backtory.Object.extend("TExtraInfo");
     var extra_info = new TExtraInfo();
     extra_info.set("lastPackageId", 0);
     extra_info.set("lastPackageTime", "0");
     extra_info.set("usedHomesTF", 0);
     extra_info.set("telegramAndVote", 0);
+    context.log("line 124");
     extra_info.save({
         success: function (extra_info) {
+            context.log("line 127");
             callback(extra_info);
         },
         error: function (error) {
