@@ -12,15 +12,15 @@ exports.handler = function (requestBody, context) {
                 if (player.get("heartLastTime") != null)
                 {
                    // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
-                     //context.log("lastTime:"+lastdate);
+                     context.log("lastTime:"+player.get("heartLastTime"));
                     var testDate = new Date(player.get("heartLastTime")).toUTCString();
                     player.set("heartLastTime", testDate);
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
                 player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
                 
-                if(player.get("heart")==3||player.get("heart")==4)
-                    player.set("heart",2);
+             //   if(player.get("heart")==3||player.get("heart")==4)
+               //     player.set("heart",2);
                  context.log("player:" + JSON.stringify(player));
                 context.succeed(player);
             });
