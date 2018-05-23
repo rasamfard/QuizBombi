@@ -6,7 +6,7 @@ exports.handler = function (requestBody, context) {
     var player_id = securityContext.userId;//
     context.log("player_id:" + player_id);
     findPlayer(context, player_id, function (player) {
-        context.log("player:" + JSON.stringify(player));
+      //  context.log("player:" + JSON.stringify(player));
         updateEnergy(context, player, function () {
             checkInfinitEnergy(context, player, function () {
                 if (player.get("heartLastTime") != null)
@@ -16,8 +16,10 @@ exports.handler = function (requestBody, context) {
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
                 player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
+                
                 if(player.get("heart")==3||player.get("heart")==4)
                     player.set("heart",2);
+                 context.log("player:" + JSON.stringify(player));
                 context.succeed(player);
             });
         });
