@@ -13,7 +13,7 @@ exports.handler = function (requestBody, context) {
                 {
                    // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
                      context.log("lastTime:"+player.get("heartLastTime"));
-                    var testDate = new Date(player.get("heartLastTime")).toUTCString();
+                    var testDate = new Date(""+player.get("heartLastTime")).toUTCString();
                     player.set("heartLastTime", testDate);
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
@@ -87,7 +87,7 @@ function updateEnergy(context, pp, callback)
     }
     else
     {
-        //pp.set("heartLastTime", lastdate);
+        pp.set("heartLastTime", lastdate);
     }
     pp.set("heart", newHeart);
     savePlayer(context, pp, callback);
