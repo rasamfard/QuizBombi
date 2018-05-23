@@ -85,6 +85,10 @@ function updateEnergy(context, pp, callback)
             pp.set("heartLastTime", myStartDate);
         }
     }
+    else
+    {
+        pp.set("heartLastTime", lastdate);
+    }
     pp.set("heart", newHeart);
     savePlayer(context, pp, callback);
 }
