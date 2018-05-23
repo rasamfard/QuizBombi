@@ -11,6 +11,7 @@ exports.handler = function (requestBody, context) {
             checkInfinitEnergy(context, player, function () {
                 if (player.get("heartLastTime") != null)
                 {
+                    context.log("lastTime:"+player.get("heartLastTime"));
                     var testDate = new Date(player.get("heartLastTime")).toUTCString();
                     player.set("heartLastTime", testDate);
                 }
