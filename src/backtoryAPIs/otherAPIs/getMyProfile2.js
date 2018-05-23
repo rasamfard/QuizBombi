@@ -13,7 +13,7 @@ exports.handler = function (requestBody, context) {
                 {
                    // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
                      //context.log("lastTime:"+lastdate);
-                    var testDate = new Date(player.get("heartLastTime")).toUTCString();
+                    var testDate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z").toUTCString();
                     player.set("heartLastTime", testDate);
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
