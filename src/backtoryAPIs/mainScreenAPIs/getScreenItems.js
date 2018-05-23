@@ -59,7 +59,7 @@ function getShopItems(context, itemIds, callback)
         },
         error: function (error) {
             context.log('111111111111111111');
-            context.fail(error);
+            fail(context,error);
 
         }
     });
@@ -80,7 +80,8 @@ function getPlayer(context, pId, callback)
         },
         error: function (error) {
             context.log('222222222222222');
-            context.fail(error);
+                        fail(context,error);
+
         }
     });
 }
@@ -122,4 +123,14 @@ function getScreen(context, player, callback)
         }
     });
 
+}
+function fail(context, error)
+{
+    context.log("error:" + JSON.stringify(error));
+    context.fail(error);
+}
+function succeed(context, result)
+{
+// 	context.log("result:"+JSON.stringify(result));
+    context.succeed(result);
 }
