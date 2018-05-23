@@ -9,16 +9,16 @@ exports.handler = function (requestBody, context) {
       //  context.log("player:" + JSON.stringify(player));
         updateEnergy(context, player, function () {
             checkInfinitEnergy(context, player, function () {
-               // if (player.get("heartLastTime") != null)
-               // {
+                if (player.get("heartLastTime") != null)
+                {
                    // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
                      context.log("lastTime:"+player.get("heartLastTime"));
-                   // var testDate = new Date(player.get("heartLastTime")).toUTCString();
-                   // player.set("heartLastTime", player.get("heartLastTime"));
-               // }
+                    var testDate = new Date(player.get("heartLastTime")).toUTCString();
+                    player.set("heartLastTime", testDate);
+                }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
                 player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
-                player.set("heartLastTime",""+player.get("heartLastTime"));
+               // player.set("heartLastTime",""+player.get("heartLastTime"));
              //   if(player.get("heart")==3||player.get("heart")==4)
                //     player.set("heart",2);
                  context.log("player:" + JSON.stringify(player));
@@ -87,7 +87,7 @@ function updateEnergy(context, pp, callback)
     }
     else
     {
-        pp.set("heartLastTime", lastdate);
+        //pp.set("heartLastTime", lastdate);
     }
     pp.set("heart", newHeart);
     savePlayer(context, pp, callback);
