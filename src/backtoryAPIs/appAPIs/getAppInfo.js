@@ -15,7 +15,7 @@ exports.handler = function (requestBody, context) {
     BattlesInfo[5] = {battleType: 6, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 20, 30, 40, 50, 60], battleStageTimes: [32, 59, 86, 113, 140, 167, 194, 221, 248, 275, 302, 329, 356, 383, 410, 437, 464, 491, 518]};
     BattlesInfo[6] = {battleType: 7, minPlayer: 1, maxPlayer: 6, backtoryTimes: [20, 30, 40, 50, 60], battleStageTimes: [27, 59, 86, 118]};
     
-    var maxHearts=5; 
+    var maxHearts=3; 
     
     var telegramReward=100;
     var voteReward=100;

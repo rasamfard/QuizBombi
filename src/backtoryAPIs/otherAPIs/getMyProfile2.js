@@ -16,6 +16,8 @@ exports.handler = function (requestBody, context) {
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
                 player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
+                if(player.get("heart")==3||player.get("heart")==4)
+                    player.set("heart",3);
                 context.succeed(player);
             });
         });
