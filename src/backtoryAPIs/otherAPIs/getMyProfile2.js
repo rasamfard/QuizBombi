@@ -11,9 +11,9 @@ exports.handler = function (requestBody, context) {
             checkInfinitEnergy(context, player, function () {
                 if (player.get("heartLastTime") != null)
                 {
-                    var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
-                     context.log("lastTime:"+lastdate);
-                    var testDate = new Date(lastdate).toUTCString();
+                   // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
+                     //context.log("lastTime:"+lastdate);
+                    var testDate = new Date(player.get("heartLastTime")).toUTCString();
                     player.set("heartLastTime", testDate);
                 }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
