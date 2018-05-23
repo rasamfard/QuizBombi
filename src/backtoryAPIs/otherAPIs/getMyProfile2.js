@@ -12,7 +12,7 @@ exports.handler = function (requestBody, context) {
                // if (player.get("heartLastTime") != null)
                // {
                    // var lastdate = new Date(player.get("heartLastTime").split("UTC")[0] + "Z");
-                 //    context.log("lastTime:"+player.get("heartLastTime"));
+                     context.log("lastTime:"+player.get("heartLastTime"));
                    // var testDate = new Date(player.get("heartLastTime")).toUTCString();
                    // player.set("heartLastTime", player.get("heartLastTime"));
                // }
