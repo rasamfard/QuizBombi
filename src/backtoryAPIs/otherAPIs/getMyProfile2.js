@@ -18,7 +18,7 @@ exports.handler = function (requestBody, context) {
                // }
                 player.set("telegramAndVote", player.get("extraInfo").get("telegramAndVote"));
                 player.get("currentMission").set("currentMissionStep", player.get("currentMissionStep"));
-                
+                player.set("heartLastTime",""+player.get("heartLastTime"));
              //   if(player.get("heart")==3||player.get("heart")==4)
                //     player.set("heart",2);
                  context.log("player:" + JSON.stringify(player));
