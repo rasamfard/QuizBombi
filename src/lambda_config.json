@@ -181,6 +181,6 @@
    "test": {
     "handlerName": "backtoryAPIs/test.handler",
     "timeLimitInMilliSeconds": 7000,
-    "authenticationMode": "AUTHENTICATED"
+    "authenticationMode": "PUBLIC"
   }
 }
